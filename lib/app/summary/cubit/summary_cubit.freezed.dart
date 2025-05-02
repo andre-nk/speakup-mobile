@@ -21,21 +21,21 @@ mixin _$SummaryState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String feedback, bool isQuickFeedback) success,
+    required TResult Function(SpeechFeedback feedback) success,
     required TResult Function(String message) error,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String feedback, bool isQuickFeedback)? success,
+    TResult? Function(SpeechFeedback feedback)? success,
     TResult? Function(String message)? error,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String feedback, bool isQuickFeedback)? success,
+    TResult Function(SpeechFeedback feedback)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
@@ -130,7 +130,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String feedback, bool isQuickFeedback) success,
+    required TResult Function(SpeechFeedback feedback) success,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -141,7 +141,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String feedback, bool isQuickFeedback)? success,
+    TResult? Function(SpeechFeedback feedback)? success,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -152,7 +152,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String feedback, bool isQuickFeedback)? success,
+    TResult Function(SpeechFeedback feedback)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -249,7 +249,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String feedback, bool isQuickFeedback) success,
+    required TResult Function(SpeechFeedback feedback) success,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -260,7 +260,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String feedback, bool isQuickFeedback)? success,
+    TResult? Function(SpeechFeedback feedback)? success,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -271,7 +271,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String feedback, bool isQuickFeedback)? success,
+    TResult Function(SpeechFeedback feedback)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -330,7 +330,9 @@ abstract class _$$SuccessImplCopyWith<$Res> {
     $Res Function(_$SuccessImpl) then,
   ) = __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String feedback, bool isQuickFeedback});
+  $Res call({SpeechFeedback feedback});
+
+  $SpeechFeedbackCopyWith<$Res> get feedback;
 }
 
 /// @nodoc
@@ -346,38 +348,40 @@ class __$$SuccessImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? feedback = null, Object? isQuickFeedback = null}) {
+  $Res call({Object? feedback = null}) {
     return _then(
       _$SuccessImpl(
         feedback:
             null == feedback
                 ? _value.feedback
                 : feedback // ignore: cast_nullable_to_non_nullable
-                    as String,
-        isQuickFeedback:
-            null == isQuickFeedback
-                ? _value.isQuickFeedback
-                : isQuickFeedback // ignore: cast_nullable_to_non_nullable
-                    as bool,
+                    as SpeechFeedback,
       ),
     );
+  }
+
+  /// Create a copy of SummaryState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SpeechFeedbackCopyWith<$Res> get feedback {
+    return $SpeechFeedbackCopyWith<$Res>(_value.feedback, (value) {
+      return _then(_value.copyWith(feedback: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$SuccessImpl implements _Success {
-  const _$SuccessImpl({required this.feedback, this.isQuickFeedback = false});
+  const _$SuccessImpl({required this.feedback});
 
   @override
-  final String feedback;
-  @override
-  @JsonKey()
-  final bool isQuickFeedback;
+  final SpeechFeedback feedback;
 
   @override
   String toString() {
-    return 'SummaryState.success(feedback: $feedback, isQuickFeedback: $isQuickFeedback)';
+    return 'SummaryState.success(feedback: $feedback)';
   }
 
   @override
@@ -386,13 +390,11 @@ class _$SuccessImpl implements _Success {
         (other.runtimeType == runtimeType &&
             other is _$SuccessImpl &&
             (identical(other.feedback, feedback) ||
-                other.feedback == feedback) &&
-            (identical(other.isQuickFeedback, isQuickFeedback) ||
-                other.isQuickFeedback == isQuickFeedback));
+                other.feedback == feedback));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, feedback, isQuickFeedback);
+  int get hashCode => Object.hash(runtimeType, feedback);
 
   /// Create a copy of SummaryState
   /// with the given fields replaced by the non-null parameter values.
@@ -407,10 +409,10 @@ class _$SuccessImpl implements _Success {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String feedback, bool isQuickFeedback) success,
+    required TResult Function(SpeechFeedback feedback) success,
     required TResult Function(String message) error,
   }) {
-    return success(feedback, isQuickFeedback);
+    return success(feedback);
   }
 
   @override
@@ -418,10 +420,10 @@ class _$SuccessImpl implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String feedback, bool isQuickFeedback)? success,
+    TResult? Function(SpeechFeedback feedback)? success,
     TResult? Function(String message)? error,
   }) {
-    return success?.call(feedback, isQuickFeedback);
+    return success?.call(feedback);
   }
 
   @override
@@ -429,12 +431,12 @@ class _$SuccessImpl implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String feedback, bool isQuickFeedback)? success,
+    TResult Function(SpeechFeedback feedback)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(feedback, isQuickFeedback);
+      return success(feedback);
     }
     return orElse();
   }
@@ -478,13 +480,10 @@ class _$SuccessImpl implements _Success {
 }
 
 abstract class _Success implements SummaryState {
-  const factory _Success({
-    required final String feedback,
-    final bool isQuickFeedback,
-  }) = _$SuccessImpl;
+  const factory _Success({required final SpeechFeedback feedback}) =
+      _$SuccessImpl;
 
-  String get feedback;
-  bool get isQuickFeedback;
+  SpeechFeedback get feedback;
 
   /// Create a copy of SummaryState
   /// with the given fields replaced by the non-null parameter values.
@@ -565,7 +564,7 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String feedback, bool isQuickFeedback) success,
+    required TResult Function(SpeechFeedback feedback) success,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -576,7 +575,7 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String feedback, bool isQuickFeedback)? success,
+    TResult? Function(SpeechFeedback feedback)? success,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -587,7 +586,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String feedback, bool isQuickFeedback)? success,
+    TResult Function(SpeechFeedback feedback)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {

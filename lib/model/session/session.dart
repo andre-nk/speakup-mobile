@@ -61,6 +61,68 @@ extension SessionWPMCalculator on Session {
 
     return result;
   }
+
+  //Calculate overall WPM
+  double calculateOverallWPM() {
+    if (wpmHistory.isEmpty) return 0.0;
+
+    // Calculate the average WPM from the history
+    final totalWPM = wpmHistory.reduce((a, b) => a + b);
+    return totalWPM / wpmHistory.length;
+  }
+}
+
+extension CommonWords on Session {
+  /// Returns a list of the most common words in the transcript field
+  List<String> get mostCommonWords {
+    final words = transcript.split(RegExp(r'\s+'));
+
+    return words
+        .fold<Map<String, int>>({}, (acc, word) {
+          final cleanedWord = word.toLowerCase().replaceAll(RegExp(r'[^\w]'), '');
+          if (cleanedWord.isNotEmpty) {
+            acc[cleanedWord] = (acc[cleanedWord] ?? 0) + 1;
+          }
+          return acc;
+        })
+        .entries
+        .where((entry) => entry.value > 1)
+        .map((entry) => entry.key)
+        .toList();
+  }
+
+  List<Map<String, int>> get mostCommonWordsWithCount {
+    final words = transcript.split(RegExp(r'\s+'));
+
+    return words
+        .fold<Map<String, int>>({}, (acc, word) {
+          final cleanedWord = word.toLowerCase().replaceAll(RegExp(r'[^\w]'), '');
+          if (cleanedWord.isNotEmpty) {
+            acc[cleanedWord] = (acc[cleanedWord] ?? 0) + 1;
+          }
+          return acc;
+        })
+        .entries
+        .where((entry) => entry.value > 1)
+        .map((entry) => <String, int>{entry.key: entry.value})
+        .toList();
+  }
+}
+
+extension GrammarMistakes on Session {
+  List<String> get grammarMistakes {
+    // Assuming grammar.sentencePairs contains the mistakes, find the differences, and slice it (word)
+    return grammar.sentencePairs
+        .map(
+          (pair) =>
+              pair.original
+                  .split(' ')
+                  .where((word) => !pair.corrected.contains(word))
+                  .toList(),
+        )
+        .expand((words) => words)
+        .toList();
+  }
 }
 
 @freezed
