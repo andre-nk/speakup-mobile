@@ -4,5 +4,18 @@
     "tagline": "Your Journey to Confident English Starts Here!",
     "sso": "Continue with Google",
     "tnc": "By continuing, you agree to SpeakUp’s  Terms. Learn how we process your data in our privacy policy"
+  },
+  "native_language_picker": {
+    "greeting": "hey, Andreas!",
+    "heading": "What's your\nnative language?",
+    "subheading": "Choose your preferred language for fun learning and personalized experience!"
+  },
+  "english_mastery_picker": {
+    "beginner": "Beginner",
+    "intermediate": "Intermediate",
+    "advanced": "Advanced",
+    "beginner_subtitle": "You're just starting to understand the basics of English. You’re working on building your vocabulary, forming simple sentences, and gaining the confidence to speak in everyday situations",
+    "intermediate_subtitle": "You’ve got the basics down! Already familiar with essential vocabulary  and simple phrases. You’re building confidence to speak in longer and more complex sentences.",
+    "advanced_subtitle": "You’re able to speak confidently in everyday situations, mastered basics, using a wider range of vocabulary and sentence structures. At this level, you're refining your fluency and perfecting your grammar."
   }
 }

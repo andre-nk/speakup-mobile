@@ -57,7 +57,7 @@ class MainApp extends StatelessWidget {
                 if(user.nativeLanguage == null) {
                   return const NativeLanguagePickerPage();
                 } else if (user.englishMastery == null) {
-                  return const EnglishMasteryPicker();
+                  return const EnglishMasteryPickerPage();
                 } else if (user.goal == null) {
                   return const GoalPickerPage();
                 } else {
