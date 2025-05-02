@@ -13,7 +13,7 @@ class ExerciseCustomizerCubit extends Cubit<ExerciseCustomizerState> {
     : _repository = ExerciseCustomizerRepository(),
       super(const ExerciseCustomizerState.initial());
 
-  Future<void> fetchFirstExerciseByLevel({
+  Future<void> customizeExercise({
     required String userID,
     required String nativeLanguage,
     required String goal,

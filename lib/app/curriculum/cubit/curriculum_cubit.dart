@@ -8,18 +8,28 @@ part 'curriculum_cubit.freezed.dart';
 class CurriculumCubit extends Cubit<CurriculumState> {
   final CurriculumRepository _repository;
 
-  CurriculumCubit({CurriculumRepository? repository}) 
+  CurriculumCubit({CurriculumRepository? repository})
     : _repository = repository ?? CurriculumRepository(),
       super(const CurriculumState.initial());
+
+  /// Fetches the complete curriculum data
+  Future<void> fetchMaterialCurriculum() async {
+    emit(const CurriculumState.loading());
+    try {
+      final curriculumData = await _repository.fetchMaterialCurriculum();
+
+      emit(CurriculumState.materialLoaded(materialCurriculumData: curriculumData));
+    } catch (e) {
+      emit(CurriculumState.error(message: e.toString()));
+    }
+  }
 
   Future<void> fetchExerciseCurriculum() async {
     emit(const CurriculumState.loading());
     try {
       final curriculumData = await _repository.fetchExerciseCurriculum();
-      
-      emit(CurriculumState.exerciseLoaded(
-        exerciseCurriculumData: curriculumData,
-      ));
+
+      emit(CurriculumState.exerciseLoaded(exerciseCurriculumData: curriculumData));
     } catch (e) {
       emit(CurriculumState.error(message: e.toString()));
     }

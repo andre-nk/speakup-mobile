@@ -87,6 +87,85 @@ class CurriculumRepository {
     }
   }
 
+  Future<MaterialCurriculumData> fetchMaterialCurriculum() async {
+    try {
+      // 1. Fetch all levels
+      final levels = await _fetchLevels();
+
+      // 2. Fetch all sections
+      final sections = await _fetchSections();
+
+      // 3. Fetch all materials
+      final materials = await _fetchMaterials();
+
+      // Connect levels to sections and sections to materials
+      final updatedLevels = <Level>[];
+
+      for (final level in levels) {
+        final levelSections = <Section>[];
+
+        for (var sectionID in level.sectionIds ?? []) {
+          // Find the section by ID
+          final sectionIndex = sections.indexWhere((s) => s.id == sectionID);
+          _logger.e(sectionIndex);
+
+          if (sectionIndex != -1) {
+            final section = sections[sectionIndex];
+
+            // Create a list to hold materials for this section
+            final sectionMaterials = <Material>[];
+
+            // Find materials for this section
+            for (var materialID in section.materialIds ?? []) {
+              final materialIndex = materials.indexWhere((m) => m.id == materialID);
+              if (materialIndex != -1) {
+                final material = materials[materialIndex];
+                sectionMaterials.add(material);
+              }
+            }
+
+            // Sort materials by sequence
+            sectionMaterials.sort((a, b) => a.sequence.compareTo(b.sequence));
+
+            // Create a new section with materials
+            final updatedSection = section.copyWith(materialObjects: sectionMaterials);
+
+            _logger.e(updatedSection);
+
+            levelSections.add(updatedSection);
+          }
+        }
+
+        // Sort sections by sequence
+        levelSections.sort((a, b) => a.sequence.compareTo(b.sequence));
+
+        // Create a new level with sections
+        final updatedLevel = level.copyWith(sectionObjects: levelSections);
+        updatedLevels.add(updatedLevel);
+      }
+
+      // Sort levels by difficulty (beginner, intermediate, advanced)
+      final levelOrder = {'beginner': 0, 'intermediate': 1, 'advanced': 2};
+
+      updatedLevels.sort(
+        (a, b) => (levelOrder[a.level] ?? 999).compareTo(levelOrder[b.level] ?? 999),
+      );
+
+      // Replace the old lists with updated ones
+      levels.clear();
+      levels.addAll(updatedLevels);
+
+      return MaterialCurriculumData(
+        levels: levels,
+        sections: sections,
+        materials: materials,
+      );
+    } catch (e) {
+      _logger.e('Error fetching material curriculum: $e');
+      rethrow;
+    }
+  }
+
   /// Fetches all levels from Sanity
   Future<List<Level>> _fetchLevels() async {
     try {
@@ -133,7 +212,7 @@ class CurriculumRepository {
       rethrow;
     }
   }
-  
+
   /// Fetches all exercises from Sanity
   Future<List<Exercise>> _fetchExercises() async {
     try {
@@ -153,6 +232,27 @@ class CurriculumRepository {
       return (response.result as List).map((json) => Exercise.fromJson(json)).toList();
     } catch (e) {
       _logger.e('Error fetching exercises: $e');
+      rethrow;
+    }
+  }
+
+  Future<List<Material>> _fetchMaterials() async {
+    try {
+      const query = '''
+        *[_type == "material"] | order(sequence asc) {
+          "id": _id,
+          sequence,
+          title,
+          subtitle,
+          content,
+          "relatedExerciseIds": relatedExercises[]->._id
+        }
+      ''';
+
+      final response = await client.fetch(query);
+      return (response.result as List).map((json) => Material.fromJson(json)).toList();
+    } catch (e) {
+      _logger.e('Error fetching materials: $e');
       rethrow;
     }
   }

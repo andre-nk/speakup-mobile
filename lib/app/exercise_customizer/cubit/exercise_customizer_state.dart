@@ -2,7 +2,7 @@ part of 'exercise_customizer_cubit.dart';
 
 @freezed
 class ExerciseCustomizerState with _$ExerciseCustomizerState {
-    /// Initial state - no data has been loaded yet
+  /// Initial state - no data has been loaded yet
   const factory ExerciseCustomizerState.initial() = _Initial;
 
   /// Loading state - request is in progress
