@@ -12,7 +12,7 @@ import 'package:speakup_final/view/screens/auth/sign_in_page.dart';
 import 'package:speakup_final/view/screens/onboarding/english_mastery_picker_page.dart';
 import 'package:speakup_final/view/screens/onboarding/goal_picker_page.dart';
 import 'package:speakup_final/view/screens/onboarding/native_language_picker_page.dart';
-import 'package:speakup_final/view/screens/wrapper/wrapper_page.dart';
+import 'package:speakup_final/view/screens/onboarding_session/onboarding_session_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -61,7 +61,7 @@ class MainApp extends StatelessWidget {
                 } else if (user.goal == null) {
                   return const GoalPickerPage();
                 } else {
-                  return const WrapperPage();
+                  return const OnboardingSessionPage();
                 }
               },
               orElse: () => const SignInPage(),
