@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "197100130024",
+    "project_id": "speakup-final",
+    "storage_bucket": "speakup-final.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:197100130024:android:6c1507007f473301bc035d",
+        "android_client_info": {
+          "package_name": "com.example.speakup_final"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "197100130024-2g672387a9va43b7usgt8vludk6flt39.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoBItZmJ4qUYx3YQ-sbxRoP87ktyuC3Uo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "197100130024-2g672387a9va43b7usgt8vludk6flt39.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
