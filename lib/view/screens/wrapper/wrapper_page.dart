@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:speakup_final/app/auth/cubit/auth_cubit.dart';
-import 'package:speakup_final/view/screens/exercise/exercise_list_page.dart';
+import 'package:speakup_final/view/screens/exercise_list/exercise_list_page.dart';
 import 'package:speakup_final/view/screens/home/home_page.dart';
 import 'package:speakup_final/view/screens/material/material_list_page.dart';
 
