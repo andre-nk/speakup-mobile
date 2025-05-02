@@ -28,7 +28,7 @@ mixin _$OnboardingState {
     languageSelected,
     required TResult Function(EnglishMastery englishMastery, String? message)
     englishMasterySelected,
-    required TResult Function(Goal goal, String? message) goalSelected,
+    required TResult Function(String goal, DateTime? goalDeadline) goalFilled,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
@@ -39,7 +39,7 @@ mixin _$OnboardingState {
     TResult? Function(String languageCode, String? message)? languageSelected,
     TResult? Function(EnglishMastery englishMastery, String? message)?
     englishMasterySelected,
-    TResult? Function(Goal goal, String? message)? goalSelected,
+    TResult? Function(String goal, DateTime? goalDeadline)? goalFilled,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
@@ -50,7 +50,7 @@ mixin _$OnboardingState {
     TResult Function(String languageCode, String? message)? languageSelected,
     TResult Function(EnglishMastery englishMastery, String? message)?
     englishMasterySelected,
-    TResult Function(Goal goal, String? message)? goalSelected,
+    TResult Function(String goal, DateTime? goalDeadline)? goalFilled,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -62,7 +62,7 @@ mixin _$OnboardingState {
     required TResult Function(_LanguageSelected value) languageSelected,
     required TResult Function(_EnglishMasterySelected value)
     englishMasterySelected,
-    required TResult Function(_GoalSelected value) goalSelected,
+    required TResult Function(_GoalSelected value) goalFilled,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
@@ -72,7 +72,7 @@ mixin _$OnboardingState {
     TResult? Function(_Error value)? error,
     TResult? Function(_LanguageSelected value)? languageSelected,
     TResult? Function(_EnglishMasterySelected value)? englishMasterySelected,
-    TResult? Function(_GoalSelected value)? goalSelected,
+    TResult? Function(_GoalSelected value)? goalFilled,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
@@ -82,7 +82,7 @@ mixin _$OnboardingState {
     TResult Function(_Error value)? error,
     TResult Function(_LanguageSelected value)? languageSelected,
     TResult Function(_EnglishMasterySelected value)? englishMasterySelected,
-    TResult Function(_GoalSelected value)? goalSelected,
+    TResult Function(_GoalSelected value)? goalFilled,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
 }
@@ -161,7 +161,7 @@ class _$InitialImpl implements _Initial {
     languageSelected,
     required TResult Function(EnglishMastery englishMastery, String? message)
     englishMasterySelected,
-    required TResult Function(Goal goal, String? message) goalSelected,
+    required TResult Function(String goal, DateTime? goalDeadline) goalFilled,
   }) {
     return initial();
   }
@@ -176,7 +176,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(String languageCode, String? message)? languageSelected,
     TResult? Function(EnglishMastery englishMastery, String? message)?
     englishMasterySelected,
-    TResult? Function(Goal goal, String? message)? goalSelected,
+    TResult? Function(String goal, DateTime? goalDeadline)? goalFilled,
   }) {
     return initial?.call();
   }
@@ -191,7 +191,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(String languageCode, String? message)? languageSelected,
     TResult Function(EnglishMastery englishMastery, String? message)?
     englishMasterySelected,
-    TResult Function(Goal goal, String? message)? goalSelected,
+    TResult Function(String goal, DateTime? goalDeadline)? goalFilled,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -210,7 +210,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_LanguageSelected value) languageSelected,
     required TResult Function(_EnglishMasterySelected value)
     englishMasterySelected,
-    required TResult Function(_GoalSelected value) goalSelected,
+    required TResult Function(_GoalSelected value) goalFilled,
   }) {
     return initial(this);
   }
@@ -224,7 +224,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Error value)? error,
     TResult? Function(_LanguageSelected value)? languageSelected,
     TResult? Function(_EnglishMasterySelected value)? englishMasterySelected,
-    TResult? Function(_GoalSelected value)? goalSelected,
+    TResult? Function(_GoalSelected value)? goalFilled,
   }) {
     return initial?.call(this);
   }
@@ -238,7 +238,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Error value)? error,
     TResult Function(_LanguageSelected value)? languageSelected,
     TResult Function(_EnglishMasterySelected value)? englishMasterySelected,
-    TResult Function(_GoalSelected value)? goalSelected,
+    TResult Function(_GoalSelected value)? goalFilled,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -304,7 +304,7 @@ class _$LoadingImpl implements _Loading {
     languageSelected,
     required TResult Function(EnglishMastery englishMastery, String? message)
     englishMasterySelected,
-    required TResult Function(Goal goal, String? message) goalSelected,
+    required TResult Function(String goal, DateTime? goalDeadline) goalFilled,
   }) {
     return loading();
   }
@@ -319,7 +319,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(String languageCode, String? message)? languageSelected,
     TResult? Function(EnglishMastery englishMastery, String? message)?
     englishMasterySelected,
-    TResult? Function(Goal goal, String? message)? goalSelected,
+    TResult? Function(String goal, DateTime? goalDeadline)? goalFilled,
   }) {
     return loading?.call();
   }
@@ -334,7 +334,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(String languageCode, String? message)? languageSelected,
     TResult Function(EnglishMastery englishMastery, String? message)?
     englishMasterySelected,
-    TResult Function(Goal goal, String? message)? goalSelected,
+    TResult Function(String goal, DateTime? goalDeadline)? goalFilled,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -353,7 +353,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_LanguageSelected value) languageSelected,
     required TResult Function(_EnglishMasterySelected value)
     englishMasterySelected,
-    required TResult Function(_GoalSelected value) goalSelected,
+    required TResult Function(_GoalSelected value) goalFilled,
   }) {
     return loading(this);
   }
@@ -367,7 +367,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_Error value)? error,
     TResult? Function(_LanguageSelected value)? languageSelected,
     TResult? Function(_EnglishMasterySelected value)? englishMasterySelected,
-    TResult? Function(_GoalSelected value)? goalSelected,
+    TResult? Function(_GoalSelected value)? goalFilled,
   }) {
     return loading?.call(this);
   }
@@ -381,7 +381,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_Error value)? error,
     TResult Function(_LanguageSelected value)? languageSelected,
     TResult Function(_EnglishMasterySelected value)? englishMasterySelected,
-    TResult Function(_GoalSelected value)? goalSelected,
+    TResult Function(_GoalSelected value)? goalFilled,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -484,7 +484,7 @@ class _$SuccessImpl implements _Success {
     languageSelected,
     required TResult Function(EnglishMastery englishMastery, String? message)
     englishMasterySelected,
-    required TResult Function(Goal goal, String? message) goalSelected,
+    required TResult Function(String goal, DateTime? goalDeadline) goalFilled,
   }) {
     return success(message, updatedField);
   }
@@ -499,7 +499,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function(String languageCode, String? message)? languageSelected,
     TResult? Function(EnglishMastery englishMastery, String? message)?
     englishMasterySelected,
-    TResult? Function(Goal goal, String? message)? goalSelected,
+    TResult? Function(String goal, DateTime? goalDeadline)? goalFilled,
   }) {
     return success?.call(message, updatedField);
   }
@@ -514,7 +514,7 @@ class _$SuccessImpl implements _Success {
     TResult Function(String languageCode, String? message)? languageSelected,
     TResult Function(EnglishMastery englishMastery, String? message)?
     englishMasterySelected,
-    TResult Function(Goal goal, String? message)? goalSelected,
+    TResult Function(String goal, DateTime? goalDeadline)? goalFilled,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -533,7 +533,7 @@ class _$SuccessImpl implements _Success {
     required TResult Function(_LanguageSelected value) languageSelected,
     required TResult Function(_EnglishMasterySelected value)
     englishMasterySelected,
-    required TResult Function(_GoalSelected value) goalSelected,
+    required TResult Function(_GoalSelected value) goalFilled,
   }) {
     return success(this);
   }
@@ -547,7 +547,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function(_Error value)? error,
     TResult? Function(_LanguageSelected value)? languageSelected,
     TResult? Function(_EnglishMasterySelected value)? englishMasterySelected,
-    TResult? Function(_GoalSelected value)? goalSelected,
+    TResult? Function(_GoalSelected value)? goalFilled,
   }) {
     return success?.call(this);
   }
@@ -561,7 +561,7 @@ class _$SuccessImpl implements _Success {
     TResult Function(_Error value)? error,
     TResult Function(_LanguageSelected value)? languageSelected,
     TResult Function(_EnglishMasterySelected value)? englishMasterySelected,
-    TResult Function(_GoalSelected value)? goalSelected,
+    TResult Function(_GoalSelected value)? goalFilled,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -666,7 +666,7 @@ class _$ErrorImpl implements _Error {
     languageSelected,
     required TResult Function(EnglishMastery englishMastery, String? message)
     englishMasterySelected,
-    required TResult Function(Goal goal, String? message) goalSelected,
+    required TResult Function(String goal, DateTime? goalDeadline) goalFilled,
   }) {
     return error(message);
   }
@@ -681,7 +681,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function(String languageCode, String? message)? languageSelected,
     TResult? Function(EnglishMastery englishMastery, String? message)?
     englishMasterySelected,
-    TResult? Function(Goal goal, String? message)? goalSelected,
+    TResult? Function(String goal, DateTime? goalDeadline)? goalFilled,
   }) {
     return error?.call(message);
   }
@@ -696,7 +696,7 @@ class _$ErrorImpl implements _Error {
     TResult Function(String languageCode, String? message)? languageSelected,
     TResult Function(EnglishMastery englishMastery, String? message)?
     englishMasterySelected,
-    TResult Function(Goal goal, String? message)? goalSelected,
+    TResult Function(String goal, DateTime? goalDeadline)? goalFilled,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -715,7 +715,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function(_LanguageSelected value) languageSelected,
     required TResult Function(_EnglishMasterySelected value)
     englishMasterySelected,
-    required TResult Function(_GoalSelected value) goalSelected,
+    required TResult Function(_GoalSelected value) goalFilled,
   }) {
     return error(this);
   }
@@ -729,7 +729,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function(_Error value)? error,
     TResult? Function(_LanguageSelected value)? languageSelected,
     TResult? Function(_EnglishMasterySelected value)? englishMasterySelected,
-    TResult? Function(_GoalSelected value)? goalSelected,
+    TResult? Function(_GoalSelected value)? goalFilled,
   }) {
     return error?.call(this);
   }
@@ -743,7 +743,7 @@ class _$ErrorImpl implements _Error {
     TResult Function(_Error value)? error,
     TResult Function(_LanguageSelected value)? languageSelected,
     TResult Function(_EnglishMasterySelected value)? englishMasterySelected,
-    TResult Function(_GoalSelected value)? goalSelected,
+    TResult Function(_GoalSelected value)? goalFilled,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -857,7 +857,7 @@ class _$LanguageSelectedImpl implements _LanguageSelected {
     languageSelected,
     required TResult Function(EnglishMastery englishMastery, String? message)
     englishMasterySelected,
-    required TResult Function(Goal goal, String? message) goalSelected,
+    required TResult Function(String goal, DateTime? goalDeadline) goalFilled,
   }) {
     return languageSelected(languageCode, message);
   }
@@ -872,7 +872,7 @@ class _$LanguageSelectedImpl implements _LanguageSelected {
     TResult? Function(String languageCode, String? message)? languageSelected,
     TResult? Function(EnglishMastery englishMastery, String? message)?
     englishMasterySelected,
-    TResult? Function(Goal goal, String? message)? goalSelected,
+    TResult? Function(String goal, DateTime? goalDeadline)? goalFilled,
   }) {
     return languageSelected?.call(languageCode, message);
   }
@@ -887,7 +887,7 @@ class _$LanguageSelectedImpl implements _LanguageSelected {
     TResult Function(String languageCode, String? message)? languageSelected,
     TResult Function(EnglishMastery englishMastery, String? message)?
     englishMasterySelected,
-    TResult Function(Goal goal, String? message)? goalSelected,
+    TResult Function(String goal, DateTime? goalDeadline)? goalFilled,
     required TResult orElse(),
   }) {
     if (languageSelected != null) {
@@ -906,7 +906,7 @@ class _$LanguageSelectedImpl implements _LanguageSelected {
     required TResult Function(_LanguageSelected value) languageSelected,
     required TResult Function(_EnglishMasterySelected value)
     englishMasterySelected,
-    required TResult Function(_GoalSelected value) goalSelected,
+    required TResult Function(_GoalSelected value) goalFilled,
   }) {
     return languageSelected(this);
   }
@@ -920,7 +920,7 @@ class _$LanguageSelectedImpl implements _LanguageSelected {
     TResult? Function(_Error value)? error,
     TResult? Function(_LanguageSelected value)? languageSelected,
     TResult? Function(_EnglishMasterySelected value)? englishMasterySelected,
-    TResult? Function(_GoalSelected value)? goalSelected,
+    TResult? Function(_GoalSelected value)? goalFilled,
   }) {
     return languageSelected?.call(this);
   }
@@ -934,7 +934,7 @@ class _$LanguageSelectedImpl implements _LanguageSelected {
     TResult Function(_Error value)? error,
     TResult Function(_LanguageSelected value)? languageSelected,
     TResult Function(_EnglishMasterySelected value)? englishMasterySelected,
-    TResult Function(_GoalSelected value)? goalSelected,
+    TResult Function(_GoalSelected value)? goalFilled,
     required TResult orElse(),
   }) {
     if (languageSelected != null) {
@@ -1056,7 +1056,7 @@ class _$EnglishMasterySelectedImpl implements _EnglishMasterySelected {
     languageSelected,
     required TResult Function(EnglishMastery englishMastery, String? message)
     englishMasterySelected,
-    required TResult Function(Goal goal, String? message) goalSelected,
+    required TResult Function(String goal, DateTime? goalDeadline) goalFilled,
   }) {
     return englishMasterySelected(englishMastery, message);
   }
@@ -1071,7 +1071,7 @@ class _$EnglishMasterySelectedImpl implements _EnglishMasterySelected {
     TResult? Function(String languageCode, String? message)? languageSelected,
     TResult? Function(EnglishMastery englishMastery, String? message)?
     englishMasterySelected,
-    TResult? Function(Goal goal, String? message)? goalSelected,
+    TResult? Function(String goal, DateTime? goalDeadline)? goalFilled,
   }) {
     return englishMasterySelected?.call(englishMastery, message);
   }
@@ -1086,7 +1086,7 @@ class _$EnglishMasterySelectedImpl implements _EnglishMasterySelected {
     TResult Function(String languageCode, String? message)? languageSelected,
     TResult Function(EnglishMastery englishMastery, String? message)?
     englishMasterySelected,
-    TResult Function(Goal goal, String? message)? goalSelected,
+    TResult Function(String goal, DateTime? goalDeadline)? goalFilled,
     required TResult orElse(),
   }) {
     if (englishMasterySelected != null) {
@@ -1105,7 +1105,7 @@ class _$EnglishMasterySelectedImpl implements _EnglishMasterySelected {
     required TResult Function(_LanguageSelected value) languageSelected,
     required TResult Function(_EnglishMasterySelected value)
     englishMasterySelected,
-    required TResult Function(_GoalSelected value) goalSelected,
+    required TResult Function(_GoalSelected value) goalFilled,
   }) {
     return englishMasterySelected(this);
   }
@@ -1119,7 +1119,7 @@ class _$EnglishMasterySelectedImpl implements _EnglishMasterySelected {
     TResult? Function(_Error value)? error,
     TResult? Function(_LanguageSelected value)? languageSelected,
     TResult? Function(_EnglishMasterySelected value)? englishMasterySelected,
-    TResult? Function(_GoalSelected value)? goalSelected,
+    TResult? Function(_GoalSelected value)? goalFilled,
   }) {
     return englishMasterySelected?.call(this);
   }
@@ -1133,7 +1133,7 @@ class _$EnglishMasterySelectedImpl implements _EnglishMasterySelected {
     TResult Function(_Error value)? error,
     TResult Function(_LanguageSelected value)? languageSelected,
     TResult Function(_EnglishMasterySelected value)? englishMasterySelected,
-    TResult Function(_GoalSelected value)? goalSelected,
+    TResult Function(_GoalSelected value)? goalFilled,
     required TResult orElse(),
   }) {
     if (englishMasterySelected != null) {
@@ -1166,7 +1166,7 @@ abstract class _$$GoalSelectedImplCopyWith<$Res> {
     $Res Function(_$GoalSelectedImpl) then,
   ) = __$$GoalSelectedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({Goal goal, String? message});
+  $Res call({String goal, DateTime? goalDeadline});
 }
 
 /// @nodoc
@@ -1182,19 +1182,19 @@ class __$$GoalSelectedImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? goal = null, Object? message = freezed}) {
+  $Res call({Object? goal = null, Object? goalDeadline = freezed}) {
     return _then(
       _$GoalSelectedImpl(
         goal:
             null == goal
                 ? _value.goal
                 : goal // ignore: cast_nullable_to_non_nullable
-                    as Goal,
-        message:
-            freezed == message
-                ? _value.message
-                : message // ignore: cast_nullable_to_non_nullable
-                    as String?,
+                    as String,
+        goalDeadline:
+            freezed == goalDeadline
+                ? _value.goalDeadline
+                : goalDeadline // ignore: cast_nullable_to_non_nullable
+                    as DateTime?,
       ),
     );
   }
@@ -1203,16 +1203,16 @@ class __$$GoalSelectedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GoalSelectedImpl implements _GoalSelected {
-  const _$GoalSelectedImpl({required this.goal, this.message});
+  const _$GoalSelectedImpl({required this.goal, this.goalDeadline});
 
   @override
-  final Goal goal;
+  final String goal;
   @override
-  final String? message;
+  final DateTime? goalDeadline;
 
   @override
   String toString() {
-    return 'OnboardingState.goalSelected(goal: $goal, message: $message)';
+    return 'OnboardingState.goalFilled(goal: $goal, goalDeadline: $goalDeadline)';
   }
 
   @override
@@ -1221,11 +1221,12 @@ class _$GoalSelectedImpl implements _GoalSelected {
         (other.runtimeType == runtimeType &&
             other is _$GoalSelectedImpl &&
             (identical(other.goal, goal) || other.goal == goal) &&
-            (identical(other.message, message) || other.message == message));
+            (identical(other.goalDeadline, goalDeadline) ||
+                other.goalDeadline == goalDeadline));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, goal, message);
+  int get hashCode => Object.hash(runtimeType, goal, goalDeadline);
 
   /// Create a copy of OnboardingState
   /// with the given fields replaced by the non-null parameter values.
@@ -1247,9 +1248,9 @@ class _$GoalSelectedImpl implements _GoalSelected {
     languageSelected,
     required TResult Function(EnglishMastery englishMastery, String? message)
     englishMasterySelected,
-    required TResult Function(Goal goal, String? message) goalSelected,
+    required TResult Function(String goal, DateTime? goalDeadline) goalFilled,
   }) {
-    return goalSelected(goal, message);
+    return goalFilled(goal, goalDeadline);
   }
 
   @override
@@ -1262,9 +1263,9 @@ class _$GoalSelectedImpl implements _GoalSelected {
     TResult? Function(String languageCode, String? message)? languageSelected,
     TResult? Function(EnglishMastery englishMastery, String? message)?
     englishMasterySelected,
-    TResult? Function(Goal goal, String? message)? goalSelected,
+    TResult? Function(String goal, DateTime? goalDeadline)? goalFilled,
   }) {
-    return goalSelected?.call(goal, message);
+    return goalFilled?.call(goal, goalDeadline);
   }
 
   @override
@@ -1277,11 +1278,11 @@ class _$GoalSelectedImpl implements _GoalSelected {
     TResult Function(String languageCode, String? message)? languageSelected,
     TResult Function(EnglishMastery englishMastery, String? message)?
     englishMasterySelected,
-    TResult Function(Goal goal, String? message)? goalSelected,
+    TResult Function(String goal, DateTime? goalDeadline)? goalFilled,
     required TResult orElse(),
   }) {
-    if (goalSelected != null) {
-      return goalSelected(goal, message);
+    if (goalFilled != null) {
+      return goalFilled(goal, goalDeadline);
     }
     return orElse();
   }
@@ -1296,9 +1297,9 @@ class _$GoalSelectedImpl implements _GoalSelected {
     required TResult Function(_LanguageSelected value) languageSelected,
     required TResult Function(_EnglishMasterySelected value)
     englishMasterySelected,
-    required TResult Function(_GoalSelected value) goalSelected,
+    required TResult Function(_GoalSelected value) goalFilled,
   }) {
-    return goalSelected(this);
+    return goalFilled(this);
   }
 
   @override
@@ -1310,9 +1311,9 @@ class _$GoalSelectedImpl implements _GoalSelected {
     TResult? Function(_Error value)? error,
     TResult? Function(_LanguageSelected value)? languageSelected,
     TResult? Function(_EnglishMasterySelected value)? englishMasterySelected,
-    TResult? Function(_GoalSelected value)? goalSelected,
+    TResult? Function(_GoalSelected value)? goalFilled,
   }) {
-    return goalSelected?.call(this);
+    return goalFilled?.call(this);
   }
 
   @override
@@ -1324,11 +1325,11 @@ class _$GoalSelectedImpl implements _GoalSelected {
     TResult Function(_Error value)? error,
     TResult Function(_LanguageSelected value)? languageSelected,
     TResult Function(_EnglishMasterySelected value)? englishMasterySelected,
-    TResult Function(_GoalSelected value)? goalSelected,
+    TResult Function(_GoalSelected value)? goalFilled,
     required TResult orElse(),
   }) {
-    if (goalSelected != null) {
-      return goalSelected(this);
+    if (goalFilled != null) {
+      return goalFilled(this);
     }
     return orElse();
   }
@@ -1336,12 +1337,12 @@ class _$GoalSelectedImpl implements _GoalSelected {
 
 abstract class _GoalSelected implements OnboardingState {
   const factory _GoalSelected({
-    required final Goal goal,
-    final String? message,
+    required final String goal,
+    final DateTime? goalDeadline,
   }) = _$GoalSelectedImpl;
 
-  Goal get goal;
-  String? get message;
+  String get goal;
+  DateTime? get goalDeadline;
 
   /// Create a copy of OnboardingState
   /// with the given fields replaced by the non-null parameter values.

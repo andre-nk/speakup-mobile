@@ -16,7 +16,11 @@ _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
     _$EnglishMasteryEnumMap,
     json['englishMastery'],
   ),
-  goal: $enumDecodeNullable(_$GoalEnumMap, json['goal']),
+  goal: json['goal'] as String,
+  goalDeadline:
+      json['goalDeadline'] == null
+          ? null
+          : DateTime.parse(json['goalDeadline'] as String),
   longestStreak: (json['longestStreak'] as num?)?.toInt() ?? 0,
   currentStreak: (json['currentStreak'] as num?)?.toInt() ?? 0,
   completedExercises:
@@ -27,6 +31,21 @@ _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
   completedMaterials:
       (json['completedMaterials'] as List<dynamic>?)
           ?.map((e) => e as String)
+          .toList() ??
+      const [],
+  customCurriculum:
+      (json['customCurriculum'] as List<dynamic>?)
+          ?.map((e) => Section.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      const [],
+  customExercises:
+      (json['customExercises'] as List<dynamic>?)
+          ?.map((e) => Exercise.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      const [],
+  customMaterials:
+      (json['customMaterials'] as List<dynamic>?)
+          ?.map((e) => Material.fromJson(e as Map<String, dynamic>))
           .toList() ??
       const [],
   createdAt: DateTime.parse(json['createdAt'] as String),
@@ -40,11 +59,15 @@ Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
       'photoURL': instance.photoURL,
       'nativeLanguage': instance.nativeLanguage,
       'englishMastery': _$EnglishMasteryEnumMap[instance.englishMastery],
-      'goal': _$GoalEnumMap[instance.goal],
+      'goal': instance.goal,
+      'goalDeadline': instance.goalDeadline?.toIso8601String(),
       'longestStreak': instance.longestStreak,
       'currentStreak': instance.currentStreak,
       'completedExercises': instance.completedExercises,
       'completedMaterials': instance.completedMaterials,
+      'customCurriculum': instance.customCurriculum,
+      'customExercises': instance.customExercises,
+      'customMaterials': instance.customMaterials,
       'createdAt': instance.createdAt.toIso8601String(),
     };
 
@@ -52,13 +75,4 @@ const _$EnglishMasteryEnumMap = {
   EnglishMastery.beginner: 'beginner',
   EnglishMastery.intermediate: 'intermediate',
   EnglishMastery.advanced: 'advanced',
-};
-
-const _$GoalEnumMap = {
-  Goal.casual: 'casual',
-  Goal.academic: 'academic',
-  Goal.business: 'business',
-  Goal.travel: 'travel',
-  Goal.social: 'social',
-  Goal.fluency: 'fluency',
 };

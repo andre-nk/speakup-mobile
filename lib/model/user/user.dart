@@ -1,23 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:speakup_final/model/exercise/exercise.dart';
+import 'package:speakup_final/model/section/section.dart';
+import 'package:speakup_final/model/material/material.dart';
 
 part 'user.freezed.dart';
 part 'user.g.dart';
 
-enum EnglishMastery {
-  beginner,
-  intermediate,
-  advanced,
-}
-
-enum Goal {
-  casual, // For casual learners
-  academic, // For academic purposes
-  business, // For business/professional development
-  travel, // For travel purposes
-  social, // For social interactions
-  fluency, // For achieving general fluency
-}
+enum EnglishMastery { beginner, intermediate, advanced }
 
 @freezed
 class User with _$User {
@@ -28,11 +18,15 @@ class User with _$User {
     String? photoURL,
     String? nativeLanguage,
     EnglishMastery? englishMastery,
-    Goal? goal,
+    required String goal,
+    DateTime? goalDeadline,
     @Default(0) int longestStreak,
     @Default(0) int currentStreak,
     @Default([]) List<String> completedExercises,
     @Default([]) List<String> completedMaterials,
+    @Default([]) List<Section> customCurriculum,
+    @Default([]) List<Exercise> customExercises,
+    @Default([]) List<Material> customMaterials,
     required DateTime createdAt,
   }) = _User;
 
@@ -50,18 +44,22 @@ class User with _$User {
         (e) => e.toString() == 'EnglishMastery.${firebaseUser.data()?['englishMastery']}',
         orElse: () => EnglishMastery.beginner,
       ),
-      goal: Goal.values.firstWhere(
-        (e) => e.toString() == 'Goal.${firebaseUser.data()?['goal']}',
-        orElse: () => Goal.casual,
-      ),
+      goal: firebaseUser.data()?['goal'] ?? '',
+      goalDeadline: firebaseUser.data()?['goalDeadline'] != null
+          ? _parseCreatedAt(firebaseUser.data()?['goalDeadline'])
+          : null,
       longestStreak: firebaseUser.data()?['longestStreak'] ?? 0,
       currentStreak: firebaseUser.data()?['currentStreak'] ?? 0,
-      completedExercises: List<String>.from(firebaseUser.data()?['completedExercises'] ?? []),
-      completedMaterials: List<String>.from(firebaseUser.data()?['completedMaterials'] ?? []),
+      completedExercises: List<String>.from(
+        firebaseUser.data()?['completedExercises'] ?? [],
+      ),
+      completedMaterials: List<String>.from(
+        firebaseUser.data()?['completedMaterials'] ?? [],
+      ),
       createdAt: _parseCreatedAt(firebaseUser.data()?['createdAt']),
     );
   }
-  
+
   // Helper method to parse createdAt value which could be a Timestamp or String
   static DateTime _parseCreatedAt(dynamic value) {
     if (value is Timestamp) {

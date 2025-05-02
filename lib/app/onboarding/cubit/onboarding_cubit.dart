@@ -13,11 +13,13 @@ class OnboardingCubit extends Cubit<OnboardingState> {
 
   String? _selectedLanguageCode;
   EnglishMastery? _selectedEnglishMastery;
-  Goal? _selectedGoal;
+  String? _filledGoal;
+  DateTime? _goalDeadline;
 
   String? get selectedLanguageCode => _selectedLanguageCode;
   EnglishMastery? get selectedEnglishMastery => _selectedEnglishMastery;
-  Goal? get selectedGoal => _selectedGoal;
+  String? get filledGoal => _filledGoal;
+  DateTime? get goalDeadline => _goalDeadline;
 
   /// Selects a language without saving it to the database
   void selectLanguage(String languageCode) {
@@ -40,9 +42,10 @@ class OnboardingCubit extends Cubit<OnboardingState> {
     );
   }
 
-  void selectGoal(Goal goal) {
-    _selectedGoal = goal;
-    emit(OnboardingState.goalSelected(goal: goal, message: 'Learning goal selected'));
+  void selectGoal(String goal, {DateTime? goalDeadline}) {
+    _filledGoal = goal;
+    _goalDeadline = goalDeadline;
+    emit(OnboardingState.goalFilled(goal: goal, goalDeadline: goalDeadline));
   }
 
   Future<void> updateNativeLanguage(String nativeLanguage) async {
@@ -84,23 +87,23 @@ class OnboardingCubit extends Cubit<OnboardingState> {
     }
   }
 
-  Future<void> updateGoal(Goal goal) async {
+  Future<void> updateGoal(String goal, {DateTime? goalDeadline}) async {
     emit(const OnboardingState.loading());
 
     try {
-      await _onboardingRepository.updateUserField(
-        'goal',
-        goal.toString().split('.').last,
-      );
+      await _onboardingRepository.updateUserField('goal', goal);
+      if (goalDeadline != null) {
+        await _onboardingRepository.updateUserField('goalDeadline', goalDeadline);
+      }
 
       emit(
         const OnboardingState.success(
-          message: 'Learning goal updated successfully',
+          message: 'Goal updated successfully',
           updatedField: OnboardingField.goal,
         ),
       );
     } catch (e) {
-      Logger().e('Error updating learning goal: $e');
+      Logger().e('Error updating goal: $e');
       emit(OnboardingState.error(e.toString()));
     }
   }

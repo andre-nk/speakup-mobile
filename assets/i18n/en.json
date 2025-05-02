@@ -11,7 +11,7 @@
     "subheading": "Choose your preferred language for fun learning and personalized experience!"
   },
   "english_mastery_picker": {
-    "greeting": "awesome progress!",
+    "greeting": "next up...",
     "heading": "What's your\nEnglish level?",
     "subheading": "Select your current English level to personalize your learning experience.",
     "beginner": "Beginner",
@@ -22,7 +22,7 @@
     "advanced_subtitle": "You’re able to speak confidently in everyday situations, mastered basics, using a wider range of vocabulary and sentence structures. At this level, you're refining your fluency and perfecting your grammar."
   },
   "goal_picker": {
-    "greeting": "awesome progress!",
+    "greeting": "last one...",
     "heading": "What's your\nlearning goal?",
     "subheading": "Tell us why you're learning English to personalize your experience.",
     "academic": "Academic",

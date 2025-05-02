@@ -54,11 +54,13 @@ class MainApp extends StatelessWidget {
           builder: (context, state) {
             return state.maybeWhen(
               authenticated: (user) {
+                Logger().i('User authenticated: ${user.goal}');
+
                 if(user.nativeLanguage == null) {
                   return const NativeLanguagePickerPage();
                 } else if (user.englishMastery == null) {
                   return const EnglishMasteryPickerPage();
-                } else if (user.goal == null) {
+                } else if (user.goal == "") {
                   return const GoalPickerPage();
                 } else {
                   return const OnboardingSessionPage();

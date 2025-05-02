@@ -17,9 +17,9 @@ class OnboardingState with _$OnboardingState {
     required EnglishMastery englishMastery,
     String? message,
   }) = _EnglishMasterySelected;
-  const factory OnboardingState.goalSelected({
-    required Goal goal,
-    String? message,
+  const factory OnboardingState.goalFilled({
+    required String goal,
+    DateTime? goalDeadline,
   }) = _GoalSelected;
 }
 

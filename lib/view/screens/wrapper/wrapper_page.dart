@@ -13,7 +13,7 @@ class WrapperPage extends StatelessWidget {
         child: Text(
           context.read<AuthCubit>().state.mapOrNull(
                 authenticated: (value) {
-                  return 'Authenticated: ${value.user.englishMastery.toString()}';
+                  return 'Authenticated: ${value.user.goal.toString()}';
                 },
               ) ??
               "Not Authenticated",
