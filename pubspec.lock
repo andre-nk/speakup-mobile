@@ -241,6 +241,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.1"
+  eventflux:
+    dependency: transitive
+    description:
+      name: eventflux
+      sha256: f6da4534c84b11531ae84546fbd0202b743ca7ef6bc92c84c0f50d7a1c487a12
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.1"
   fading_edge_scrollview:
     dependency: transitive
     description:
@@ -379,6 +387,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.4.6"
+  flutter_sanity_portable_text:
+    dependency: "direct main"
+    description:
+      name: flutter_sanity_portable_text
+      sha256: "7ac5ed35e0fc4b02a38c8f6d11e136d6066ca74b6764ad07ca321871d448908c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.6.2"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -566,7 +582,7 @@ packages:
     source: hosted
     version: "0.7.2"
   json_annotation:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: json_annotation
       sha256: "1ce844379ca14835a50d2f019a3099f419082cfdd231cd86a142af94dd5c6bb1"
@@ -669,6 +685,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.0"
+  nanoid:
+    dependency: transitive
+    description:
+      name: nanoid
+      sha256: be3f8752d9046c825df2f3914195151eb876f3ad64b9d833dd0b799b77b8759e
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   nested:
     dependency: transitive
     description:
@@ -821,6 +845,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.28.0"
+  sanity_client:
+    dependency: "direct main"
+    description:
+      name: sanity_client
+      sha256: e2e14be10a5b17803c0978335088518c3717dc13eda244e65f897b72dd1844bf
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.8.4"
   shelf:
     dependency: transitive
     description:
