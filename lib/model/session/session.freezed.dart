@@ -29,6 +29,7 @@ mixin _$Session {
   GrammarResult get grammar => throw _privateConstructorUsedError;
   PitchResult get pitchResult => throw _privateConstructorUsedError;
   FormalityResult get formality => throw _privateConstructorUsedError;
+  String get transcript => throw _privateConstructorUsedError;
   List<TranscriptionEntry> get transcription =>
       throw _privateConstructorUsedError;
   List<int> get wpmHistory => throw _privateConstructorUsedError;
@@ -56,6 +57,7 @@ abstract class $SessionCopyWith<$Res> {
     GrammarResult grammar,
     PitchResult pitchResult,
     FormalityResult formality,
+    String transcript,
     List<TranscriptionEntry> transcription,
     List<int> wpmHistory,
   });
@@ -89,6 +91,7 @@ class _$SessionCopyWithImpl<$Res, $Val extends Session>
     Object? grammar = null,
     Object? pitchResult = null,
     Object? formality = null,
+    Object? transcript = null,
     Object? transcription = null,
     Object? wpmHistory = null,
   }) {
@@ -134,6 +137,11 @@ class _$SessionCopyWithImpl<$Res, $Val extends Session>
                     ? _value.formality
                     : formality // ignore: cast_nullable_to_non_nullable
                         as FormalityResult,
+            transcript:
+                null == transcript
+                    ? _value.transcript
+                    : transcript // ignore: cast_nullable_to_non_nullable
+                        as String,
             transcription:
                 null == transcription
                     ? _value.transcription
@@ -207,6 +215,7 @@ abstract class _$$SessionImplCopyWith<$Res> implements $SessionCopyWith<$Res> {
     GrammarResult grammar,
     PitchResult pitchResult,
     FormalityResult formality,
+    String transcript,
     List<TranscriptionEntry> transcription,
     List<int> wpmHistory,
   });
@@ -243,6 +252,7 @@ class __$$SessionImplCopyWithImpl<$Res>
     Object? grammar = null,
     Object? pitchResult = null,
     Object? formality = null,
+    Object? transcript = null,
     Object? transcription = null,
     Object? wpmHistory = null,
   }) {
@@ -288,6 +298,11 @@ class __$$SessionImplCopyWithImpl<$Res>
                 ? _value.formality
                 : formality // ignore: cast_nullable_to_non_nullable
                     as FormalityResult,
+        transcript:
+            null == transcript
+                ? _value.transcript
+                : transcript // ignore: cast_nullable_to_non_nullable
+                    as String,
         transcription:
             null == transcription
                 ? _value._transcription
@@ -315,6 +330,7 @@ class _$SessionImpl implements _Session {
     required this.grammar,
     required this.pitchResult,
     required this.formality,
+    required this.transcript,
     final List<TranscriptionEntry> transcription = const [],
     final List<int> wpmHistory = const [],
   }) : _transcription = transcription,
@@ -339,6 +355,8 @@ class _$SessionImpl implements _Session {
   final PitchResult pitchResult;
   @override
   final FormalityResult formality;
+  @override
+  final String transcript;
   final List<TranscriptionEntry> _transcription;
   @override
   @JsonKey()
@@ -359,7 +377,7 @@ class _$SessionImpl implements _Session {
 
   @override
   String toString() {
-    return 'Session(id: $id, timestamp: $timestamp, exerciseID: $exerciseID, audioURL: $audioURL, filler: $filler, grammar: $grammar, pitchResult: $pitchResult, formality: $formality, transcription: $transcription, wpmHistory: $wpmHistory)';
+    return 'Session(id: $id, timestamp: $timestamp, exerciseID: $exerciseID, audioURL: $audioURL, filler: $filler, grammar: $grammar, pitchResult: $pitchResult, formality: $formality, transcript: $transcript, transcription: $transcription, wpmHistory: $wpmHistory)';
   }
 
   @override
@@ -380,6 +398,8 @@ class _$SessionImpl implements _Session {
                 other.pitchResult == pitchResult) &&
             (identical(other.formality, formality) ||
                 other.formality == formality) &&
+            (identical(other.transcript, transcript) ||
+                other.transcript == transcript) &&
             const DeepCollectionEquality().equals(
               other._transcription,
               _transcription,
@@ -402,6 +422,7 @@ class _$SessionImpl implements _Session {
     grammar,
     pitchResult,
     formality,
+    transcript,
     const DeepCollectionEquality().hash(_transcription),
     const DeepCollectionEquality().hash(_wpmHistory),
   );
@@ -430,6 +451,7 @@ abstract class _Session implements Session {
     required final GrammarResult grammar,
     required final PitchResult pitchResult,
     required final FormalityResult formality,
+    required final String transcript,
     final List<TranscriptionEntry> transcription,
     final List<int> wpmHistory,
   }) = _$SessionImpl;
@@ -452,6 +474,8 @@ abstract class _Session implements Session {
   PitchResult get pitchResult;
   @override
   FormalityResult get formality;
+  @override
+  String get transcript;
   @override
   List<TranscriptionEntry> get transcription;
   @override

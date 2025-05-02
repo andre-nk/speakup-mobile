@@ -33,9 +33,6 @@ mixin _$User {
   int get currentStreak => throw _privateConstructorUsedError;
   List<String> get completedExercises => throw _privateConstructorUsedError;
   List<String> get completedMaterials => throw _privateConstructorUsedError;
-  List<Section> get customCurriculum => throw _privateConstructorUsedError;
-  List<Exercise> get customExercises => throw _privateConstructorUsedError;
-  List<Material> get customMaterials => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
 
   /// Serializes this User to a JSON map.
@@ -65,9 +62,6 @@ abstract class $UserCopyWith<$Res> {
     int currentStreak,
     List<String> completedExercises,
     List<String> completedMaterials,
-    List<Section> customCurriculum,
-    List<Exercise> customExercises,
-    List<Material> customMaterials,
     DateTime createdAt,
   });
 }
@@ -99,9 +93,6 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? currentStreak = null,
     Object? completedExercises = null,
     Object? completedMaterials = null,
-    Object? customCurriculum = null,
-    Object? customExercises = null,
-    Object? customMaterials = null,
     Object? createdAt = null,
   }) {
     return _then(
@@ -166,21 +157,6 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
                     ? _value.completedMaterials
                     : completedMaterials // ignore: cast_nullable_to_non_nullable
                         as List<String>,
-            customCurriculum:
-                null == customCurriculum
-                    ? _value.customCurriculum
-                    : customCurriculum // ignore: cast_nullable_to_non_nullable
-                        as List<Section>,
-            customExercises:
-                null == customExercises
-                    ? _value.customExercises
-                    : customExercises // ignore: cast_nullable_to_non_nullable
-                        as List<Exercise>,
-            customMaterials:
-                null == customMaterials
-                    ? _value.customMaterials
-                    : customMaterials // ignore: cast_nullable_to_non_nullable
-                        as List<Material>,
             createdAt:
                 null == createdAt
                     ? _value.createdAt
@@ -213,9 +189,6 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
     int currentStreak,
     List<String> completedExercises,
     List<String> completedMaterials,
-    List<Section> customCurriculum,
-    List<Exercise> customExercises,
-    List<Material> customMaterials,
     DateTime createdAt,
   });
 }
@@ -244,9 +217,6 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? currentStreak = null,
     Object? completedExercises = null,
     Object? completedMaterials = null,
-    Object? customCurriculum = null,
-    Object? customExercises = null,
-    Object? customMaterials = null,
     Object? createdAt = null,
   }) {
     return _then(
@@ -311,21 +281,6 @@ class __$$UserImplCopyWithImpl<$Res>
                 ? _value._completedMaterials
                 : completedMaterials // ignore: cast_nullable_to_non_nullable
                     as List<String>,
-        customCurriculum:
-            null == customCurriculum
-                ? _value._customCurriculum
-                : customCurriculum // ignore: cast_nullable_to_non_nullable
-                    as List<Section>,
-        customExercises:
-            null == customExercises
-                ? _value._customExercises
-                : customExercises // ignore: cast_nullable_to_non_nullable
-                    as List<Exercise>,
-        customMaterials:
-            null == customMaterials
-                ? _value._customMaterials
-                : customMaterials // ignore: cast_nullable_to_non_nullable
-                    as List<Material>,
         createdAt:
             null == createdAt
                 ? _value.createdAt
@@ -352,15 +307,9 @@ class _$UserImpl implements _User {
     this.currentStreak = 0,
     final List<String> completedExercises = const [],
     final List<String> completedMaterials = const [],
-    final List<Section> customCurriculum = const [],
-    final List<Exercise> customExercises = const [],
-    final List<Material> customMaterials = const [],
     required this.createdAt,
   }) : _completedExercises = completedExercises,
-       _completedMaterials = completedMaterials,
-       _customCurriculum = customCurriculum,
-       _customExercises = customExercises,
-       _customMaterials = customMaterials;
+       _completedMaterials = completedMaterials;
 
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserImplFromJson(json);
@@ -407,40 +356,12 @@ class _$UserImpl implements _User {
     return EqualUnmodifiableListView(_completedMaterials);
   }
 
-  final List<Section> _customCurriculum;
-  @override
-  @JsonKey()
-  List<Section> get customCurriculum {
-    if (_customCurriculum is EqualUnmodifiableListView)
-      return _customCurriculum;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_customCurriculum);
-  }
-
-  final List<Exercise> _customExercises;
-  @override
-  @JsonKey()
-  List<Exercise> get customExercises {
-    if (_customExercises is EqualUnmodifiableListView) return _customExercises;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_customExercises);
-  }
-
-  final List<Material> _customMaterials;
-  @override
-  @JsonKey()
-  List<Material> get customMaterials {
-    if (_customMaterials is EqualUnmodifiableListView) return _customMaterials;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_customMaterials);
-  }
-
   @override
   final DateTime createdAt;
 
   @override
   String toString() {
-    return 'User(uid: $uid, email: $email, displayName: $displayName, photoURL: $photoURL, nativeLanguage: $nativeLanguage, englishMastery: $englishMastery, goal: $goal, goalDeadline: $goalDeadline, longestStreak: $longestStreak, currentStreak: $currentStreak, completedExercises: $completedExercises, completedMaterials: $completedMaterials, customCurriculum: $customCurriculum, customExercises: $customExercises, customMaterials: $customMaterials, createdAt: $createdAt)';
+    return 'User(uid: $uid, email: $email, displayName: $displayName, photoURL: $photoURL, nativeLanguage: $nativeLanguage, englishMastery: $englishMastery, goal: $goal, goalDeadline: $goalDeadline, longestStreak: $longestStreak, currentStreak: $currentStreak, completedExercises: $completedExercises, completedMaterials: $completedMaterials, createdAt: $createdAt)';
   }
 
   @override
@@ -473,18 +394,6 @@ class _$UserImpl implements _User {
               other._completedMaterials,
               _completedMaterials,
             ) &&
-            const DeepCollectionEquality().equals(
-              other._customCurriculum,
-              _customCurriculum,
-            ) &&
-            const DeepCollectionEquality().equals(
-              other._customExercises,
-              _customExercises,
-            ) &&
-            const DeepCollectionEquality().equals(
-              other._customMaterials,
-              _customMaterials,
-            ) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt));
   }
@@ -505,9 +414,6 @@ class _$UserImpl implements _User {
     currentStreak,
     const DeepCollectionEquality().hash(_completedExercises),
     const DeepCollectionEquality().hash(_completedMaterials),
-    const DeepCollectionEquality().hash(_customCurriculum),
-    const DeepCollectionEquality().hash(_customExercises),
-    const DeepCollectionEquality().hash(_customMaterials),
     createdAt,
   );
 
@@ -539,9 +445,6 @@ abstract class _User implements User {
     final int currentStreak,
     final List<String> completedExercises,
     final List<String> completedMaterials,
-    final List<Section> customCurriculum,
-    final List<Exercise> customExercises,
-    final List<Material> customMaterials,
     required final DateTime createdAt,
   }) = _$UserImpl;
 
@@ -571,12 +474,6 @@ abstract class _User implements User {
   List<String> get completedExercises;
   @override
   List<String> get completedMaterials;
-  @override
-  List<Section> get customCurriculum;
-  @override
-  List<Exercise> get customExercises;
-  @override
-  List<Material> get customMaterials;
   @override
   DateTime get createdAt;
 

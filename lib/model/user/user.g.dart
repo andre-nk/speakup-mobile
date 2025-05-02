@@ -33,21 +33,6 @@ _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
           ?.map((e) => e as String)
           .toList() ??
       const [],
-  customCurriculum:
-      (json['customCurriculum'] as List<dynamic>?)
-          ?.map((e) => Section.fromJson(e as Map<String, dynamic>))
-          .toList() ??
-      const [],
-  customExercises:
-      (json['customExercises'] as List<dynamic>?)
-          ?.map((e) => Exercise.fromJson(e as Map<String, dynamic>))
-          .toList() ??
-      const [],
-  customMaterials:
-      (json['customMaterials'] as List<dynamic>?)
-          ?.map((e) => Material.fromJson(e as Map<String, dynamic>))
-          .toList() ??
-      const [],
   createdAt: DateTime.parse(json['createdAt'] as String),
 );
 
@@ -65,9 +50,6 @@ Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
       'currentStreak': instance.currentStreak,
       'completedExercises': instance.completedExercises,
       'completedMaterials': instance.completedMaterials,
-      'customCurriculum': instance.customCurriculum,
-      'customExercises': instance.customExercises,
-      'customMaterials': instance.customMaterials,
       'createdAt': instance.createdAt.toIso8601String(),
     };
 

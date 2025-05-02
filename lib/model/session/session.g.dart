@@ -20,6 +20,7 @@ _$SessionImpl _$$SessionImplFromJson(Map<String, dynamic> json) =>
       formality: FormalityResult.fromJson(
         json['formality'] as Map<String, dynamic>,
       ),
+      transcript: json['transcript'] as String,
       transcription:
           (json['transcription'] as List<dynamic>?)
               ?.map(
@@ -44,6 +45,7 @@ Map<String, dynamic> _$$SessionImplToJson(_$SessionImpl instance) =>
       'grammar': instance.grammar,
       'pitchResult': instance.pitchResult,
       'formality': instance.formality,
+      'transcript': instance.transcript,
       'transcription': instance.transcription,
       'wpmHistory': instance.wpmHistory,
     };

@@ -24,9 +24,6 @@ class User with _$User {
     @Default(0) int currentStreak,
     @Default([]) List<String> completedExercises,
     @Default([]) List<String> completedMaterials,
-    @Default([]) List<Section> customCurriculum,
-    @Default([]) List<Exercise> customExercises,
-    @Default([]) List<Material> customMaterials,
     required DateTime createdAt,
   }) = _User;
 
