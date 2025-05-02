@@ -41,6 +41,7 @@
   "onboarding_session": {
     "greeting": "now, let's try SpeakUp!",
     "error_no_exercise": "No instructions available",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "next" : "Next"
   }
 }

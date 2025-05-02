@@ -48,7 +48,10 @@ class EnglishMasteryPickerPage extends StatelessWidget {
             floatingActionButton: context.read<OnboardingCubit>().selectedEnglishMastery == null
                     ? null
                     : WideFAB(
-                      label: "Next",
+                      label: FlutterI18n.translate(
+                        context,
+                        "onboarding_session.next",
+                      ),
                       onPressed: () {
                         if (context.read<OnboardingCubit>().selectedEnglishMastery !=
                             null) {
