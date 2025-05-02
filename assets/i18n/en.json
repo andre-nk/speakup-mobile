@@ -11,11 +11,31 @@
     "subheading": "Choose your preferred language for fun learning and personalized experience!"
   },
   "english_mastery_picker": {
+    "greeting": "awesome progress!",
+    "heading": "What's your\nEnglish level?",
+    "subheading": "Select your current English level to personalize your learning experience.",
     "beginner": "Beginner",
     "intermediate": "Intermediate",
     "advanced": "Advanced",
     "beginner_subtitle": "You're just starting to understand the basics of English. You’re working on building your vocabulary, forming simple sentences, and gaining the confidence to speak in everyday situations",
     "intermediate_subtitle": "You’ve got the basics down! Already familiar with essential vocabulary  and simple phrases. You’re building confidence to speak in longer and more complex sentences.",
     "advanced_subtitle": "You’re able to speak confidently in everyday situations, mastered basics, using a wider range of vocabulary and sentence structures. At this level, you're refining your fluency and perfecting your grammar."
+  },
+  "goal_picker": {
+    "greeting": "awesome progress!",
+    "heading": "What's your\nlearning goal?",
+    "subheading": "Tell us why you're learning English to personalize your experience.",
+    "academic": "Academic",
+    "business": "Business",
+    "travel": "Travel",
+    "social": "Social",
+    "fluency": "General Fluency",
+    "casual": "Casual Learning",
+    "academic_subtitle": "Improve English for school, research, or university. Focus on formal writing, presentations, and academic vocabulary.",
+    "business_subtitle": "Enhance professional communication skills for meetings, presentations, emails, and networking in international business environments.",
+    "travel_subtitle": "Learn practical phrases and vocabulary for travel situations, ordering food, asking for directions, and engaging with locals.",
+    "social_subtitle": "Develop skills for everyday conversations, making friends, understanding cultural references, and expressing yourself naturally.",
+    "fluency_subtitle": "Work toward overall language mastery with balanced focus on speaking, listening, reading, and writing skills.",
+    "casual_subtitle": "Learn at your own pace for general interest without specific goals. Explore the language in a relaxed way."
   }
 }

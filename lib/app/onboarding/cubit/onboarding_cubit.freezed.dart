@@ -983,11 +983,11 @@ class __$$EnglishMasterySelectedImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? englishMastery = freezed, Object? message = freezed}) {
+  $Res call({Object? englishMastery = null, Object? message = freezed}) {
     return _then(
       _$EnglishMasterySelectedImpl(
         englishMastery:
-            freezed == englishMastery
+            null == englishMastery
                 ? _value.englishMastery
                 : englishMastery // ignore: cast_nullable_to_non_nullable
                     as EnglishMastery,
@@ -1024,19 +1024,13 @@ class _$EnglishMasterySelectedImpl implements _EnglishMasterySelected {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$EnglishMasterySelectedImpl &&
-            const DeepCollectionEquality().equals(
-              other.englishMastery,
-              englishMastery,
-            ) &&
+            (identical(other.englishMastery, englishMastery) ||
+                other.englishMastery == englishMastery) &&
             (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    const DeepCollectionEquality().hash(englishMastery),
-    message,
-  );
+  int get hashCode => Object.hash(runtimeType, englishMastery, message);
 
   /// Create a copy of OnboardingState
   /// with the given fields replaced by the non-null parameter values.
@@ -1188,11 +1182,11 @@ class __$$GoalSelectedImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? goal = freezed, Object? message = freezed}) {
+  $Res call({Object? goal = null, Object? message = freezed}) {
     return _then(
       _$GoalSelectedImpl(
         goal:
-            freezed == goal
+            null == goal
                 ? _value.goal
                 : goal // ignore: cast_nullable_to_non_nullable
                     as Goal,
@@ -1226,16 +1220,12 @@ class _$GoalSelectedImpl implements _GoalSelected {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GoalSelectedImpl &&
-            const DeepCollectionEquality().equals(other.goal, goal) &&
+            (identical(other.goal, goal) || other.goal == goal) &&
             (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    const DeepCollectionEquality().hash(goal),
-    message,
-  );
+  int get hashCode => Object.hash(runtimeType, goal, message);
 
   /// Create a copy of OnboardingState
   /// with the given fields replaced by the non-null parameter values.

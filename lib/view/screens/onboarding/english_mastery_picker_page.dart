@@ -8,6 +8,7 @@ import 'package:igris/components/wide_fab.dart';
 import 'package:speakup_final/app/onboarding/cubit/onboarding_cubit.dart';
 import 'package:speakup_final/model/user/user.dart';
 import 'package:speakup_final/repository/onboarding/onboarding_repository.dart';
+import 'package:speakup_final/view/screens/onboarding/goal_picker_page.dart';
 
 class EnglishMasteryPickerPage extends StatelessWidget {
   const EnglishMasteryPickerPage({super.key});
@@ -34,16 +35,29 @@ class EnglishMasteryPickerPage extends StatelessWidget {
               ScaffoldMessenger.of(
                 context,
               ).showSnackBar(SnackBar(content: Text(successState.message ?? "")));
+
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const GoalPickerPage()),
+              );
             },
           );
         },
         builder: (context, state) {
           return Scaffold(
-            floatingActionButton: WideFAB(
-              label: "Next",
-              onPressed: () {
-              },
-            ),
+            floatingActionButton: context.read<OnboardingCubit>().selectedEnglishMastery == null
+                    ? null
+                    : WideFAB(
+                      label: "Next",
+                      onPressed: () {
+                        if (context.read<OnboardingCubit>().selectedEnglishMastery !=
+                            null) {
+                          context.read<OnboardingCubit>().updateEnglishMastery(
+                            context.read<OnboardingCubit>().selectedEnglishMastery!,
+                          );
+                        }
+                      },
+                    ),
             body: CustomScrollView(
               slivers: [
                 SliverToBoxAdapter(
@@ -51,15 +65,15 @@ class EnglishMasteryPickerPage extends StatelessWidget {
                     greetingIconPath: "assets/icons/greeting.svg",
                     greetingText: FlutterI18n.translate(
                       context,
-                      "native_language_picker.greeting",
+                      "english_mastery_picker.greeting",
                     ),
                     headerText: FlutterI18n.translate(
                       context,
-                      "native_language_picker.heading",
+                      "english_mastery_picker.heading",
                     ),
                     subheaderText: FlutterI18n.translate(
                       context,
-                      "native_language_picker.subheading",
+                      "english_mastery_picker.subheading",
                     ),
                     backgroundColor: Theme.of(context).colorScheme.secondary,
                   ),
@@ -104,7 +118,7 @@ class EnglishMasteryPickerPage extends StatelessWidget {
                                 "english_mastery_picker.advanced_subtitle",
                               ),
                       isSelected: isSelected,
-                      variant: SelectableListTileVariant.defaultVariant,
+                      variant: SelectableListTileVariant.large,
                       onTap:
                           () => context.read<OnboardingCubit>().selectEnglishMastery(
                             masteryLevel,
