@@ -37,5 +37,10 @@
     "social_subtitle": "Develop skills for everyday conversations, making friends, understanding cultural references, and expressing yourself naturally.",
     "fluency_subtitle": "Work toward overall language mastery with balanced focus on speaking, listening, reading, and writing skills.",
     "casual_subtitle": "Learn at your own pace for general interest without specific goals. Explore the language in a relaxed way."
+  },
+  "onboarding_session": {
+    "greeting": "now, let's try SpeakUp!",
+    "error_no_exercise": "No instructions available",
+    "loading": "Loading..."
   }
 }
