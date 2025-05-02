@@ -1,10 +1,17 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:logger/web.dart';
+import 'package:speakup_final/firebase_options.dart';
+import 'package:speakup_final/theme/app_theme.dart';
+import 'package:speakup_final/view/screens/auth/sign_in_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   runApp(const MainApp());
 }
 
@@ -14,6 +21,9 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'SpeakUp Final',
+      theme: AppTheme.lightTheme(),
+      themeMode: ThemeMode.light,
       debugShowCheckedModeBanner: false,
       localizationsDelegates: [
         FlutterI18nDelegate(
@@ -30,20 +40,8 @@ class MainApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: const [
-        Locale('en'),
-      ],
-      home: Scaffold(
-        appBar: AppBar(title: const Text('SpeakUp')),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              I18nText('landing.test'),
-            ],
-          ),
-        ),
-      ),
+      supportedLocales: const [Locale('en')],
+      home: SignInPage(),
     );
   }
 }

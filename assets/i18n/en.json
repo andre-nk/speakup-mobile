@@ -1,5 +1,8 @@
 {
   "landing": {
-    "test": "Welcome Home!"
+    "title": "SpeakUp",
+    "tagline": "Your Journey to Confident English Starts Here!",
+    "sso": "Continue with Google",
+    "tnc": "By continuing, you agree to SpeakUp’s  Terms. Learn how we process your data in our privacy policy"
   }
 }
