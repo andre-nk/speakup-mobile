@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:igris/components/landing_topsheet.dart';
+import 'package:speakup_final/app/auth/cubit/auth_cubit.dart';
 
 class SignInPage extends StatelessWidget {
   const SignInPage({super.key});
@@ -18,17 +20,23 @@ class SignInPage extends StatelessWidget {
           ),
           Expanded(
             flex: 1,
-            child: Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      context.read<AuthCubit>().signInWithGoogle();
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
                       foregroundColor: Colors.black87,
                       minimumSize: Size.fromHeight(64),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(100),
+                      ),
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                     ),
                     child: Row(
@@ -48,7 +56,10 @@ class SignInPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  I18nText('landing.tnc')
+                  I18nText(
+                    'landing.tnc',
+                    child: Text("", style: Theme.of(context).textTheme.labelSmall),
+                  ),
                 ],
               ),
             ),

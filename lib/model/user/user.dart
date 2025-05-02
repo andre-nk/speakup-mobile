@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user.freezed.dart';
@@ -38,13 +39,43 @@ class User with _$User {
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
   // Factory constructor to create User from Firebase User
-  factory User.fromFirebaseUser(dynamic firebaseUser) {
+  factory User.fromFirebaseUser(DocumentSnapshot<Map<String, dynamic>> firebaseUser) {
     return User(
-      uid: firebaseUser.uid,
-      email: firebaseUser.email,
-      displayName: firebaseUser.displayName ?? 'User',
-      photoURL: firebaseUser.photoURL,
-      createdAt: DateTime.now(),
+      uid: firebaseUser.id,
+      email: firebaseUser.data()?['email'] ?? '',
+      displayName: firebaseUser.data()?['displayName'] ?? '',
+      photoURL: firebaseUser.data()?['photoURL'],
+      nativeLanguage: firebaseUser.data()?['nativeLanguage'],
+      englishMastery: EnglishMastery.values.firstWhere(
+        (e) => e.toString() == 'EnglishMastery.${firebaseUser.data()?['englishMastery']}',
+        orElse: () => EnglishMastery.beginner,
+      ),
+      goal: Goal.values.firstWhere(
+        (e) => e.toString() == 'Goal.${firebaseUser.data()?['goal']}',
+        orElse: () => Goal.casual,
+      ),
+      longestStreak: firebaseUser.data()?['longestStreak'] ?? 0,
+      currentStreak: firebaseUser.data()?['currentStreak'] ?? 0,
+      completedExercises: List<String>.from(firebaseUser.data()?['completedExercises'] ?? []),
+      completedMaterials: List<String>.from(firebaseUser.data()?['completedMaterials'] ?? []),
+      createdAt: _parseCreatedAt(firebaseUser.data()?['createdAt']),
     );
+  }
+  
+  // Helper method to parse createdAt value which could be a Timestamp or String
+  static DateTime _parseCreatedAt(dynamic value) {
+    if (value is Timestamp) {
+      return value.toDate();
+    } else if (value is String) {
+      // Try to parse string as a timestamp
+      try {
+        return DateTime.parse(value);
+      } catch (e) {
+        // Return current time if parsing fails
+        return DateTime.now();
+      }
+    }
+    // Default to current time if value is null or of unexpected type
+    return DateTime.now();
   }
 }
