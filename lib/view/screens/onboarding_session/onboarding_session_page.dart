@@ -13,9 +13,7 @@ import 'package:speakup_final/app/auth/cubit/auth_cubit.dart';
 import 'package:speakup_final/app/onboarding_exercise/onboarding_exercise_cubit.dart';
 import 'package:speakup_final/app/onboarding_exercise/onboarding_exercise_state.dart';
 import 'package:speakup_final/app/recorder/cubit/recorder_cubit.dart';
-import 'package:speakup_final/model/exercise/exercise.dart';
 import 'package:speakup_final/app/player/cubit/player_cubit.dart';
-import 'package:speakup_final/repository/exercise/exercise_repository.dart';
 import 'package:speakup_final/utils/format_duration.dart';
 
 class OnboardingSessionPage extends StatelessWidget {
@@ -27,23 +25,29 @@ class OnboardingSessionPage extends StatelessWidget {
       body: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create:
-                (context) =>
-                    OnboardingExerciseCubit(repository: ExerciseRepository())
-                      ..fetchFirstExerciseByLevel(
-                        context.read<AuthCubit>().state.whenOrNull(
-                              authenticated: (user) {
-                                if (user.englishMastery != null) {
-                                  return ExerciseLevel.values.firstWhere(
-                                    (level) => level.name == user.englishMastery!.name,
-                                  );
-                                } else {
-                                  return ExerciseLevel.beginner;
-                                }
-                              },
-                            ) ??
-                            ExerciseLevel.beginner,
-                      ),
+            create: (context) {
+              final authState = context.read<AuthCubit>().state;
+
+
+              return OnboardingExerciseCubit()..fetchFirstExerciseByLevel(
+                userID: authState.maybeWhen(
+                  authenticated: (user) => user.uid,
+                  orElse: () => "",
+                ),
+                nativeLanguage: authState.maybeWhen(
+                  authenticated: (user) => user.nativeLanguage ?? "en_US",
+                  orElse: () => "",
+                ),
+                goal: authState.maybeWhen(
+                  authenticated: (user) => user.goal,
+                  orElse: () => "",
+                ),
+                level: authState.maybeWhen(
+                  authenticated: (user) => user.englishMastery.toString().split('.').first,
+                  orElse: () => "",
+                ),
+              );
+            },
           ),
           BlocProvider(create: (context) => RecorderCubit()..initRecorder()),
           BlocProvider(create: (context) => PlayerCubit()),
@@ -168,33 +172,9 @@ class OnboardingSessionPage extends StatelessWidget {
                   return state.maybeMap(
                     loading: (_) => const Center(child: Text("Loading...")),
                     loaded: (value) {
-                      if (value.exercise.instructions == null) {
-                        return const Center(child: Text("No instructions available"));
-                      }
-
-                      // Process the instructions data for PortableText
-                      final blocks =
-                          value.exercise.instructions!.map((block) {
-                            if (block is Map<String, dynamic>) {
-                              try {
-                                return TextBlockItem.fromJson(block);
-                              } catch (e) {
-                                // Fallback if JSON parsing fails
-                                return TextBlockItem(
-                                  children: [Span(text: "Error parsing content")],
-                                );
-                              }
-                            }
-
-                            // Fallback for non-map types
-                            return TextBlockItem(
-                              children: [Span(text: block.toString())],
-                            );
-                          }).toList();
-
                       return Padding(
                         padding: const EdgeInsets.all(0.0),
-                        child: PortableText(blocks: blocks),
+                        child: SingleChildScrollView(child: Text(value.exercise.instructions![0]['content'].toString())),
                       );
                     },
                     error: (error) => Center(child: Text("Error: ${error.message}")),

@@ -1,6 +1,7 @@
 import 'package:audio_waveforms/audio_waveforms.dart' as audio_waveforms;
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
@@ -78,9 +79,9 @@ class SessionResultPage extends StatelessWidget {
                       },
                     ),
                     const SizedBox(height: 16),
-                    const Greeting(
+                    Greeting(
                       iconPath: "assets/icons/greeting.svg",
-                      message: "Astonishing!",
+                      message: FlutterI18n.translate(context, "session_result.greeting"),
                       color: Colors.black,
                     ),
 
