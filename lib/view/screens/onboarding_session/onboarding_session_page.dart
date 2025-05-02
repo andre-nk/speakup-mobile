@@ -28,6 +28,7 @@ class OnboardingSessionPage extends StatelessWidget {
             create: (context) {
               final authState = context.read<AuthCubit>().state;
 
+
               return OnboardingExerciseCubit()..fetchFirstExerciseByLevel(
                 userID: authState.maybeWhen(
                   authenticated: (user) => user.uid,
@@ -42,8 +43,7 @@ class OnboardingSessionPage extends StatelessWidget {
                   orElse: () => "",
                 ),
                 level: authState.maybeWhen(
-                  authenticated:
-                      (user) => user.englishMastery.toString().split('.').first,
+                  authenticated: (user) => user.englishMastery.toString().split('.').first,
                   orElse: () => "",
                 ),
               );
@@ -175,11 +175,7 @@ class OnboardingSessionPage extends StatelessWidget {
                     loaded: (value) {
                       return Padding(
                         padding: const EdgeInsets.all(0.0),
-                        child: SingleChildScrollView(
-                          child: Text(
-                            value.exercise.instructions![0]['content'].toString(),
-                          ),
-                        ),
+                        child: SingleChildScrollView(child: Text(value.exercise.instructions![0]['content'].toString())),
                       );
                     },
                     error: (error) => Center(child: Text("Error: ${error.message}")),
@@ -297,10 +293,10 @@ class OnboardingSessionPage extends StatelessWidget {
                 },
                 completed: (value) {
                   context.read<StreakCubit>().incrementStreak(
-                    context.read<AuthCubit>().state.whenOrNull(
-                          authenticated: (user) => user.uid,
-                        ) ??
-                        "",
+                    context.read<AuthCubit>().state.maybeWhen(
+                      authenticated: (user) => user.uid,
+                      orElse: () => "",
+                    ),
                   );
                 },
                 orElse: () {},
