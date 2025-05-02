@@ -9,6 +9,9 @@ import 'package:speakup_final/firebase_options.dart';
 import 'package:speakup_final/repository/auth/auth_repository.dart';
 import 'package:speakup_final/theme/app_theme.dart';
 import 'package:speakup_final/view/screens/auth/sign_in_page.dart';
+import 'package:speakup_final/view/screens/onboarding/english_mastery_picker_page.dart';
+import 'package:speakup_final/view/screens/onboarding/goal_picker_page.dart';
+import 'package:speakup_final/view/screens/onboarding/native_language_picker_page.dart';
 import 'package:speakup_final/view/screens/wrapper/wrapper_page.dart';
 
 void main() async {
@@ -50,7 +53,17 @@ class MainApp extends StatelessWidget {
         home: BlocBuilder<AuthCubit, AuthState>(
           builder: (context, state) {
             return state.maybeWhen(
-              authenticated: (user) => const WrapperPage(),
+              authenticated: (user) {
+                if(user.nativeLanguage == null) {
+                  return const NativeLanguagePickerPage();
+                } else if (user.englishMastery == null) {
+                  return const EnglishMasteryPicker();
+                } else if (user.goal == null) {
+                  return const GoalPickerPage();
+                } else {
+                  return const WrapperPage();
+                }
+              },
               orElse: () => const SignInPage(),
             );
           },
