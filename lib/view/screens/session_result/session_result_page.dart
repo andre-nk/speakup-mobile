@@ -100,7 +100,7 @@ class SessionResultPage extends StatelessWidget {
                         _subHeader(
                           context,
                           "assets/icons/grammar.svg",
-                          'Grammar Mistakes',
+                          FlutterI18n.translate(context, "session_result.grammar"),
                         ),
                         const SizedBox(height: 16),
                         Container(
@@ -111,10 +111,7 @@ class SessionResultPage extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(horizontal: 16.0),
                           child:
                               session.grammar.sentencePairs.isEmpty
-                                  ? const Padding(
-                                    padding: EdgeInsets.symmetric(vertical: 16.0),
-                                    child: Text("No grammar mistakes detected."),
-                                  )
+                                  ? SizedBox()
                                   : ListView.separated(
                                     physics: const NeverScrollableScrollPhysics(),
                                     shrinkWrap: true,
@@ -179,7 +176,11 @@ class SessionResultPage extends StatelessWidget {
                     // Filler
                     Column(
                       children: [
-                        _subHeader(context, "assets/icons/filler.svg", 'Filler Words'),
+                        _subHeader(
+                          context,
+                          "assets/icons/filler.svg",
+                          FlutterI18n.translate(context, "session_result.filler"),
+                        ),
                         const SizedBox(height: 16),
                         Container(
                           decoration: BoxDecoration(
@@ -192,10 +193,7 @@ class SessionResultPage extends StatelessWidget {
                           ),
                           child:
                               session.filler.chunks.isEmpty
-                                  ? const Padding(
-                                    padding: EdgeInsets.symmetric(vertical: 8.0),
-                                    child: Text("No filler words detected."),
-                                  )
+                                  ? SizedBox()
                                   : Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
@@ -207,9 +205,7 @@ class SessionResultPage extends StatelessWidget {
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(chunk.text),
-                                              Text(
-                                                "${chunk.timestamp.length} time${chunk.timestamp.length > 1 ? 's' : ''}",
-                                              ),
+                                              Text("${chunk.timestamp.length}x"),
                                             ],
                                           ),
                                         ),
@@ -222,7 +218,11 @@ class SessionResultPage extends StatelessWidget {
                     //Common
                     Column(
                       children: [
-                        _subHeader(context, "assets/icons/common.svg", 'Common Words'),
+                        _subHeader(
+                          context,
+                          "assets/icons/common.svg",
+                          FlutterI18n.translate(context, "session_result.common"),
+                        ),
                         const SizedBox(height: 16),
                         Container(
                           decoration: BoxDecoration(
@@ -235,15 +235,16 @@ class SessionResultPage extends StatelessWidget {
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: session.mostCommonWordsWithCount.map((wordCount) {
-                              return Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(wordCount.keys.first),
-                                  Text("${wordCount.values.first} time${wordCount.values.first > 1 ? 's' : ''}"),
-                                ],
-                              );
-                            }).toList(),
+                            children:
+                                session.mostCommonWordsWithCount.map((wordCount) {
+                                  return Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(wordCount.keys.first),
+                                      Text("${wordCount.values.first}x"),
+                                    ],
+                                  );
+                                }).toList(),
                           ),
                         ),
                       ],
@@ -260,7 +261,7 @@ class SessionResultPage extends StatelessWidget {
                         _subHeader(
                           context,
                           "assets/icons/formality.svg",
-                          'Formality Score',
+                          FlutterI18n.translate(context, "session_result.formality"),
                         ),
                         const SizedBox(height: 16),
                         Stack(
@@ -303,14 +304,14 @@ class SessionResultPage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Your speech formality score: ${session.formality.formalityScore * 100}/100",
+                                "${FlutterI18n.translate(context, "session_result.formality_score")} ${session.formality.formalityScore * 100}/100",
                                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
                               const SizedBox(height: 8),
                               Text(
-                                "Classification: ${session.formality.classification}",
+                                "${FlutterI18n.translate(context, "session-result.formality_classification")} ${session.formality.classification}",
                                 style: Theme.of(context).textTheme.bodySmall,
                               ),
                             ],
@@ -330,7 +331,7 @@ class SessionResultPage extends StatelessWidget {
                         _subHeader(
                           context,
                           "assets/icons/wpm.svg",
-                          'Words per Minute (WPM)',
+                          FlutterI18n.translate(context, "session_result.wpm"),
                         ),
                         const SizedBox(height: 8),
                         SizedBox(
@@ -430,7 +431,7 @@ class SessionResultPage extends StatelessWidget {
                         _subHeader(
                           context,
                           "assets/icons/pitch.svg",
-                          'Pitch Fluctuation',
+                          FlutterI18n.translate(context, "session_result.pitch"),
                         ),
                         const SizedBox(height: 8),
                         SizedBox(
@@ -543,7 +544,7 @@ class SessionResultPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Summary",
+                        FlutterI18n.translate(context, "session_result.summary"),
                         style: Theme.of(context).textTheme.displaySmall!.copyWith(
                           fontWeight: FontWeight.w600,
                           color: Theme.of(context).colorScheme.primary,
@@ -585,7 +586,10 @@ class SessionResultPage extends StatelessWidget {
                       const SizedBox(height: 48),
                       SizedBox(
                         width: double.infinity,
-                        child: Button(text: "Let’s improve that!", onPressed: () {}),
+                        child: Button(
+                          text: FlutterI18n.translate(context, "session_resut.button"),
+                          onPressed: () {},
+                        ),
                       ),
                     ],
                   ),
@@ -728,7 +732,11 @@ class SessionResultPage extends StatelessWidget {
   Widget _transcriptSection(String transcript, BuildContext context) {
     return Column(
       children: [
-        _subHeader(context, "assets/icons/transcript.svg", 'Transcription'),
+        _subHeader(
+          context,
+          "assets/icons/transcript.svg",
+          FlutterI18n.translate(context, "session_result.transcription"),
+        ),
         const SizedBox(height: 16),
         Text(transcript, style: Theme.of(context).textTheme.bodyMedium!),
       ],

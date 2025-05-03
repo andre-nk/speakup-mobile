@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:igris/components/button.dart';
 import 'package:igris/components/collapsible.dart';
@@ -9,6 +10,7 @@ import 'package:igris/components/greeting.dart';
 import 'package:igris/components/headline.dart';
 import 'package:igris/components/tile.dart';
 import 'package:speakup_final/app/curriculum/cubit/curriculum_cubit.dart';
+import 'package:speakup_final/view/screens/session/session_page.dart';
 
 class ExerciseListPage extends StatelessWidget {
   const ExerciseListPage({super.key});
@@ -31,8 +33,11 @@ class ExerciseListPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Greeting(
-                      iconPath: "assets/images/greeting_icon.svg",
-                      message: "Practice",
+                      iconPath: "assets/icons/greeting.svg",
+                      message: FlutterI18n.translate(
+                        context,
+                        "exercise_list.title",
+                      ),
                       color: Theme.of(context).primaryColor,
                     ),
                     Row(
@@ -76,7 +81,10 @@ class ExerciseListPage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "AI-Suggested Practice",
+                                FlutterI18n.translate(
+                                  context,
+                                  "exercise_list.ai",
+                                ),
                                 style: Theme.of(
                                   context,
                                 ).textTheme.headlineLarge!.copyWith(
@@ -110,7 +118,10 @@ class ExerciseListPage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "AI-Suggested Practice",
+                                FlutterI18n.translate(
+                                  context,
+                                  "exercise_list.ai",
+                                ),
                                 style: Theme.of(
                                   context,
                                 ).textTheme.headlineLarge!.copyWith(
@@ -119,7 +130,10 @@ class ExerciseListPage extends StatelessWidget {
                               ),
                               const SizedBox(height: 8),
                               Text(
-                                "Read a short passage at your normal pace, then gradually increase speed while maintaining clarity.",
+                                FlutterI18n.translate(
+                                  context,
+                                  "exercise_list.ai_description",
+                                ),
                                 style: Theme.of(context).textTheme.bodySmall!.copyWith(
                                   letterSpacing: 0.1,
                                   color: Theme.of(context).colorScheme.onSecondary,
@@ -127,8 +141,15 @@ class ExerciseListPage extends StatelessWidget {
                               ),
                               const SizedBox(height: 20),
                               Tile(
-                                title: "Speed Boost",
-                                subtitle: "2 mins - Advanced",
+                                title: FlutterI18n.translate(
+                                  context,
+                                  "exercise_list.ai_title",
+                                ),
+                                subtitle: FlutterI18n.translate(
+                                  context,
+                                  "exercise_list.ai_details",
+                                ),
+
                                 backgroundColor:
                                     Theme.of(context).colorScheme.onSecondary,
                                 iconBackgroundColor:
@@ -154,10 +175,10 @@ class ExerciseListPage extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          SvgPicture.asset("assets/images/grammar_variant.svg"),
+                          SvgPicture.asset("assets/icons/grammar_variant.svg"),
                           const SizedBox(width: 16),
                           Text(
-                            "Daily Vocabs: Finance!",
+                            FlutterI18n.translate(context, "exercise_list.vocab_title"),
                             style: Theme.of(context).textTheme.headlineLarge!.copyWith(
                               color: Theme.of(context).colorScheme.onSecondary,
                             ),
@@ -166,7 +187,7 @@ class ExerciseListPage extends StatelessWidget {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        "Read a short passage at your normal pace, then gradually increase speed while maintaining clarity.",
+                        FlutterI18n.translate(context, "exercise_list.vocab_description"),
                         style: Theme.of(context).textTheme.bodySmall!.copyWith(
                           letterSpacing: 0.1,
                           color: Theme.of(context).colorScheme.onSecondary,
@@ -176,7 +197,10 @@ class ExerciseListPage extends StatelessWidget {
                       SizedBox(
                         width: double.infinity,
                         child: Button(
-                          text: "Explore today's vocabularies!",
+                          text: FlutterI18n.translate(
+                            context,
+                            "exercise_list.vocab_button",
+                          ),
                           onPressed: () {},
                           backgroundColor: Theme.of(context).colorScheme.onSecondary,
                           textStyle: Theme.of(context).textTheme.titleSmall!.copyWith(
@@ -188,13 +212,16 @@ class ExerciseListPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 32),
-                const Headline(title: "Practice List", isDividerEnabled: false),
+                Headline(
+                  title: FlutterI18n.translate(context, "exercise_list.practice_heading"),
+                  isDividerEnabled: false,
+                ),
 
                 // Use BlocBuilder to display curriculum-based exercises
                 BlocBuilder<CurriculumCubit, CurriculumState>(
                   builder: (context, state) {
                     return state.maybeWhen(
-                      initial: () => const Center(child: Text("Loading exercises...")),
+                      initial: () => const Center(child: Text("Loading...")),
                       loading:
                           () => const Center(
                             child: Padding(
@@ -243,11 +270,21 @@ class ExerciseListPage extends StatelessWidget {
                                   exercise.level.substring(0, 1).toUpperCase() +
                                   exercise.level.substring(1);
 
-                              Tile(
-                                title: exercise.title,
-                                subtitle: "$durationText - $levelText",
-                                onTap: () {},
-                                icon: Icons.circle_outlined,
+                              exerciseTiles.add(
+                                Tile(
+                                  title: exercise.title,
+                                  subtitle: "$durationText - $levelText",
+                                  onTap: () {
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) {
+                                          return SessionPage(exercise: exercise);
+                                        },
+                                      ),
+                                    );
+                                  },
+                                  icon: Icons.circle_outlined,
+                                ),
                               );
 
                               // Add spacing between tiles except for the last one

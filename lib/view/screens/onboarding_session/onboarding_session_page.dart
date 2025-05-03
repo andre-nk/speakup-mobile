@@ -1,6 +1,7 @@
 import 'package:audio_waveforms/audio_waveforms.dart' as aw;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:igris/components/bottomsheet.dart';
 import 'package:igris/components/fab.dart';
@@ -27,8 +28,6 @@ class OnboardingSessionPage extends StatelessWidget {
           BlocProvider(
             create: (context) {
               final authState = context.read<AuthCubit>().state;
-
-
               return OnboardingExerciseCubit()..fetchFirstExerciseByLevel(
                 userID: authState.maybeWhen(
                   authenticated: (user) => user.uid,
@@ -43,7 +42,8 @@ class OnboardingSessionPage extends StatelessWidget {
                   orElse: () => "",
                 ),
                 level: authState.maybeWhen(
-                  authenticated: (user) => user.englishMastery.toString().split('.').first,
+                  authenticated:
+                      (user) => user.englishMastery.toString().split('.').first,
                   orElse: () => "",
                 ),
               );
@@ -159,9 +159,9 @@ class OnboardingSessionPage extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.all(24.0).copyWith(bottom: 0),
-            child: const Greeting(
+            child: Greeting(
               iconPath: "assets/icons/greeting.svg",
-              message: "now, let's try SpeakUp!",
+              message: FlutterI18n.translate(context, "onboarding_session.greeting"),
               color: Colors.black,
             ),
           ),
@@ -171,15 +171,29 @@ class OnboardingSessionPage extends StatelessWidget {
               child: BlocBuilder<OnboardingExerciseCubit, OnboardingExerciseState>(
                 builder: (context, state) {
                   return state.maybeMap(
-                    loading: (_) => const Center(child: Text("Loading...")),
+                    loading:
+                        (_) => Center(
+                          child: Text(
+                            FlutterI18n.translate(context, "onboarding_session.loading"),
+                          ),
+                        ),
                     loaded: (value) {
                       return Padding(
                         padding: const EdgeInsets.all(0.0),
-                        child: SingleChildScrollView(child: Text(value.exercise.instructions![0]['content'].toString())),
+                        child: SingleChildScrollView(
+                          child: Text(
+                            value.exercise.instructions![0]['content'].toString(),
+                          ),
+                        ),
                       );
                     },
                     error: (error) => Center(child: Text("Error: ${error.message}")),
-                    orElse: () => const Center(child: Text("Loading...")),
+                    orElse:
+                        () => Center(
+                          child: Text(
+                            FlutterI18n.translate(context, "onboarding_session.loading"),
+                          ),
+                        ),
                   );
                 },
               ),
@@ -201,7 +215,7 @@ class OnboardingSessionPage extends StatelessWidget {
                       : Column(
                         children: [
                           Text(
-                            "Tap the mic to start!",
+                            FlutterI18n.translate(context, "onboarding_session.start"),
                             style: Theme.of(context).textTheme.displaySmall!.copyWith(
                               color: Theme.of(context).colorScheme.primary,
                             ),
@@ -210,7 +224,10 @@ class OnboardingSessionPage extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 8.0),
                             child: Text(
-                              "Start speaking and we will evaluate your English Proficiency!",
+                              FlutterI18n.translate(
+                                context,
+                                "onboarding_session.start_description",
+                              ),
                               style: Theme.of(
                                 context,
                               ).textTheme.labelLarge!.copyWith(height: 1.65),
@@ -274,9 +291,9 @@ class OnboardingSessionPage extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.all(24.0).copyWith(bottom: 0),
-            child: const Greeting(
+            child: Greeting(
               iconPath: "assets/images/greeting_icon.svg",
-              message: "we've recorded your speech!",
+              message: FlutterI18n.translate(context, "onboarding_session.finished"),
               color: Colors.black,
             ),
           ),
@@ -319,7 +336,7 @@ class OnboardingSessionPage extends StatelessWidget {
                           const SizedBox(height: 24),
 
                           Text(
-                            "Your results are here!",
+                            FlutterI18n.translate(context, "onboarding_session.result"),
                             style: Theme.of(context).textTheme.displaySmall!.copyWith(
                               fontWeight: FontWeight.w600,
                               color: Theme.of(context).colorScheme.primary,
@@ -327,7 +344,10 @@ class OnboardingSessionPage extends StatelessWidget {
                           ),
                           const SizedBox(height: 24),
                           Button(
-                            text: "View",
+                            text: FlutterI18n.translate(
+                              context,
+                              "onboarding_session.view_button",
+                            ),
                             onPressed: () {},
                             icon: Icons.chevron_right_rounded,
                           ),
@@ -355,7 +375,10 @@ class OnboardingSessionPage extends StatelessWidget {
                           ),
                           const SizedBox(height: 24),
                           Text(
-                            "AI is analyzing your exercise...",
+                            FlutterI18n.translate(
+                              context,
+                              "onboarding_session.ai_loading",
+                            ),
                             style: Theme.of(
                               context,
                             ).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w600),

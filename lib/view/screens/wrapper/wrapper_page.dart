@@ -6,7 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:speakup_final/app/auth/cubit/auth_cubit.dart';
 import 'package:speakup_final/view/screens/exercise_list/exercise_list_page.dart';
 import 'package:speakup_final/view/screens/home/home_page.dart';
-import 'package:speakup_final/view/screens/material/material_list_page.dart';
+import 'package:speakup_final/view/screens/material_list/material_list_page.dart';
 
 class WrapperPage extends StatefulWidget {
   const WrapperPage({super.key});

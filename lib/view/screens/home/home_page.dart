@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:igris/components/button.dart';
 import 'package:igris/components/collapsible.dart';
@@ -166,7 +167,7 @@ class HomePage extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      "quick practice",
+                                      FlutterI18n.translate(context, "home.quick"),
                                       style: Theme.of(
                                         context,
                                       ).textTheme.headlineLarge!.copyWith(
@@ -175,7 +176,7 @@ class HomePage extends StatelessWidget {
                                     ),
                                     const SizedBox(height: 8),
                                     Text(
-                                      "Read a short passage at your normal pace, then gradually increase speed while maintaining clarity.",
+                                      FlutterI18n.translate(context, "home.quick_description"),
                                       style: Theme.of(
                                         context,
                                       ).textTheme.bodySmall!.copyWith(
@@ -190,7 +191,7 @@ class HomePage extends StatelessWidget {
                               SizedBox(
                                 width: double.infinity,
                                 child: Button(
-                                  text: "Explore today's vocabularies!",
+                                  text: FlutterI18n.translate(context, "home.vocav"),
                                   onPressed: () {},
                                   backgroundColor:
                                       Theme.of(context).colorScheme.onSecondary,
@@ -209,22 +210,24 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
               ),
-              const SliverToBoxAdapter(
+              SliverToBoxAdapter(
                 child: Padding(
                   padding: EdgeInsets.only(top: 36),
                   child: Column(
                     children: [
-                      Headline(title: "Jump back in", isDividerEnabled: false),
+                      Headline(
+                        title: FlutterI18n.translate(context, "home.jump"),
+                        isDividerEnabled: false,
+                      ),
                       Collapsible(
                         sectionNumber: "10.",
-                        title: "High Fluency and Confidence",
+                        title: FlutterI18n.translate(context, "home.high"),
                         children: [
                           Padding(
                             padding: EdgeInsets.only(bottom: 12.0),
                             child: Tile(
-                              title: "10.2. Thought Chunking",
-                              subtitle:
-                                  "Group ideas naturally to speak smoothly and clearly.",
+                              title: FlutterI18n.translate(context, "home.thought"),
+                              subtitle: FlutterI18n.translate(context, "home.thought_subtitle"),
                             ),
                           ),
                         ],
@@ -239,9 +242,8 @@ class HomePage extends StatelessWidget {
                   child: Column(
                     children: [
                       Headline(
-                        title: "Book and Movies",
-                        subtitle:
-                            "Enjoy our AI-curated recommendations on books or movies related to your current interest: finance!",
+                        title: FlutterI18n.translate(context, "home.content"),
+                        subtitle: FlutterI18n.translate(context, "home.content_subtitle"),
                         isDividerEnabled: false,
                       ),
                       BlocProvider(
@@ -309,7 +311,10 @@ class HomePage extends StatelessWidget {
               SliverToBoxAdapter(
                 child: Padding(
                   padding: EdgeInsets.only(top: 36, bottom: 12),
-                  child: Headline(title: "Feeds", isDividerEnabled: false),
+                  child: Headline(
+                    title: FlutterI18n.translate(context, "home.feeds"),
+                    isDividerEnabled: false,
+                  ),
                 ),
               ),
               BlocProvider(
@@ -317,78 +322,80 @@ class HomePage extends StatelessWidget {
                 child: BlocBuilder<ArticleCubit, ArticleState>(
                   builder: (context, state) {
                     return state.maybeWhen(
-                      error: (message) => SliverToBoxAdapter(
-                        child: Text(
-                          message,
-                          style: Theme.of(context).textTheme.bodySmall,
-                        ),
-                      ),
+                      error:
+                          (message) => SliverToBoxAdapter(
+                            child: Text(
+                              message,
+                              style: Theme.of(context).textTheme.bodySmall,
+                            ),
+                          ),
                       orElse: () => const SliverToBoxAdapter(child: SizedBox()),
-                      loading: () => const SliverToBoxAdapter(
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(vertical: 16.0),
-                          child: Center(child: CircularProgressIndicator()),
-                        ),
-                      ),
+                      loading:
+                          () => const SliverToBoxAdapter(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(vertical: 16.0),
+                              child: Center(child: CircularProgressIndicator()),
+                            ),
+                          ),
                       loaded: (recommendations) {
                         return SliverList(
-                          delegate: SliverChildBuilderDelegate(
-                            (context, index) {
-                              final recommendation = recommendations[index];
-                              return Padding(
-                                padding: const EdgeInsets.only(bottom: 20.0),
-                                child: Container(
-                                  padding: const EdgeInsets.all(20),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(16),
-                                    color: Theme.of(context).colorScheme.surface
-                                  ),
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        width: double.infinity,
-                                        height: 200,
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(12),
-                                          image: DecorationImage(
-                                            image: NetworkImage(
-                                              recommendation.coverImage ?? "",
-                                            ),
-                                            fit: BoxFit.cover,
+                          delegate: SliverChildBuilderDelegate((context, index) {
+                            final recommendation = recommendations[index];
+                            return Padding(
+                              padding: const EdgeInsets.only(bottom: 20.0),
+                              child: Container(
+                                padding: const EdgeInsets.all(20),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(16),
+                                  color: Theme.of(context).colorScheme.surface,
+                                ),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      width: double.infinity,
+                                      height: 200,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(12),
+                                        image: DecorationImage(
+                                          image: NetworkImage(
+                                            recommendation.coverImage ?? "",
                                           ),
+                                          fit: BoxFit.cover,
                                         ),
                                       ),
-                                      const SizedBox(height: 16),
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(horizontal: 0.0),
-                                        child: Column(
-                                          children: [
-                                            Text(
-                                              recommendation.title,
-                                              style:
-                                                  Theme.of(context).textTheme.titleLarge,
-                                            ),
-                                            const SizedBox(height: 8),
-                                            Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                              children: [
-                                                Text(
-                                                  recommendation.author,
-                                                  style: Theme.of(context).textTheme.bodySmall,
-                                                  overflow: TextOverflow.ellipsis,
-                                                ),
-                                              ],
-                                            )
-                                          ],
-                                        ),
+                                    ),
+                                    const SizedBox(height: 16),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 0.0,
                                       ),
-                                    ],
-                                  )
-                                )
-                              );
-                            },
-                            childCount: recommendations.length,
-                          ),
+                                      child: Column(
+                                        children: [
+                                          Text(
+                                            recommendation.title,
+                                            style: Theme.of(context).textTheme.titleLarge,
+                                          ),
+                                          const SizedBox(height: 8),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                recommendation.author,
+                                                style:
+                                                    Theme.of(context).textTheme.bodySmall,
+                                                overflow: TextOverflow.ellipsis,
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          }, childCount: recommendations.length),
                         );
                       },
                     );

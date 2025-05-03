@@ -80,7 +80,7 @@ class _GoalPickerPageState extends State<GoalPickerPage> {
                         context.read<OnboardingCubit>().filledGoal == ""
                     ? null
                     : WideFAB(
-                      label: "Next",
+                      label: FlutterI18n.translate(context, "goal_picker.next"),
                       onPressed: () {
                         if (context.read<OnboardingCubit>().filledGoal != null) {
                           context.read<OnboardingCubit>().updateGoal(
@@ -130,8 +130,14 @@ class _GoalPickerPageState extends State<GoalPickerPage> {
                                 color: Theme.of(context).colorScheme.primary,
                               ),
                             ),
-                            labelText: 'What is your English learning goal?',
-                            hintText: 'Enter your goal here',
+                            labelText: FlutterI18n.translate(
+                              context,
+                              "goal_picker.goal_label",
+                            ),
+                            hintText: FlutterI18n.translate(
+                              context,
+                              "goal_picker.goal_hint",
+                            ),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(8),
                             ),
@@ -147,7 +153,10 @@ class _GoalPickerPageState extends State<GoalPickerPage> {
 
                         // Suggestion chips
                         Text(
-                          'Suggested goals:',
+                          FlutterI18n.translate(
+                            context,
+                            "goal_picker.suggestion_goals",
+                          ),
                           style: Theme.of(context).textTheme.titleMedium,
                         ),
 
@@ -160,49 +169,73 @@ class _GoalPickerPageState extends State<GoalPickerPage> {
                           children: [
                             _buildGoalChip(
                               context,
-                              'Travel abroad',
+                              FlutterI18n.translate(
+                                context,
+                                "goal_picker.travel",
+                              ),
                               goalController,
                               cubit,
                             ),
                             _buildGoalChip(
                               context,
-                              'Business communication',
+                              FlutterI18n.translate(
+                                context,
+                                "goal_picker.business",
+                              ),
                               goalController,
                               cubit,
                             ),
                             _buildGoalChip(
                               context,
-                              'Make friends',
+                              FlutterI18n.translate(
+                                context,
+                                "goal_picker.friends",
+                              ),
                               goalController,
                               cubit,
                             ),
                             _buildGoalChip(
                               context,
-                              'Academic studies',
+                              FlutterI18n.translate(
+                                context,
+                                "goal_picker.study",
+                              ),
                               goalController,
                               cubit,
                             ),
                             _buildGoalChip(
                               context,
-                              'Public speaking',
+                              FlutterI18n.translate(
+                                context,
+                                "goal_picker.public",
+                              ),
                               goalController,
                               cubit,
                             ),
                             _buildGoalChip(
                               context,
-                              'Job interviews',
+                              FlutterI18n.translate(
+                                context,
+                                "goal_picker.interview",
+                              ),
                               goalController,
                               cubit,
                             ),
                             _buildGoalChip(
                               context,
-                              'Daily conversations',
+                              FlutterI18n.translate(
+                                context,
+                                "goal_picker.conversation",
+                              ),
                               goalController,
                               cubit,
                             ),
                             _buildGoalChip(
                               context,
-                              'Watch movies without subtitles',
+                              FlutterI18n.translate(
+                                context,
+                                "goal_picker.movie",
+                              ),
                               goalController,
                               cubit,
                             ),
@@ -213,7 +246,10 @@ class _GoalPickerPageState extends State<GoalPickerPage> {
 
                         // Deadline picker
                         Text(
-                          'Set a deadline (optional):',
+                          FlutterI18n.translate(
+                            context,
+                            "goal_picker.deadline",
+                          ),
                           style: Theme.of(context).textTheme.titleMedium,
                         ),
 
@@ -239,7 +275,10 @@ class _GoalPickerPageState extends State<GoalPickerPage> {
                                       ? DateFormat(
                                         'MMMM d, y',
                                       ).format(cubit.goalDeadline!)
-                                      : 'No deadline set',
+                                      : FlutterI18n.translate(
+                                        context,
+                                        "goal_picker.no_deadline",
+                                      ),
                                   style: Theme.of(context).textTheme.bodyMedium,
                                 ),
                                 Icon(
@@ -261,7 +300,12 @@ class _GoalPickerPageState extends State<GoalPickerPage> {
                                   goalDeadline: null,
                                 );
                               },
-                              child: const Text('Clear deadline'),
+                              child: Text(
+                                FlutterI18n.translate(
+                                  context,
+                                  "goal_picker.clear_deadline",
+                                ),
+                              ),
                             ),
                           ),
 

@@ -1,6 +1,7 @@
 import 'package:audio_waveforms/audio_waveforms.dart' as aw;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:igris/components/bottomsheet.dart';
 import 'package:igris/components/fab.dart';
@@ -9,8 +10,7 @@ import 'package:igris/components/outlined_card.dart';
 import 'package:igris/components/button.dart';
 import 'package:speakup_final/app/ai/cubit/ai_cubit.dart';
 import 'package:speakup_final/app/auth/cubit/auth_cubit.dart';
-import 'package:speakup_final/app/onboarding_exercise/onboarding_exercise_cubit.dart';
-import 'package:speakup_final/app/onboarding_exercise/onboarding_exercise_state.dart';
+import 'package:speakup_final/app/exercise_customizer/cubit/exercise_customizer_cubit.dart';
 import 'package:speakup_final/app/recorder/cubit/recorder_cubit.dart';
 import 'package:speakup_final/app/player/cubit/player_cubit.dart';
 import 'package:speakup_final/app/streak/cubit/streak_cubit.dart';
@@ -31,6 +31,30 @@ class SessionPage extends StatelessWidget {
           BlocProvider(create: (context) => PlayerCubit()),
           BlocProvider(create: (context) => AiCubit()),
           BlocProvider(create: (context) => StreakCubit()),
+          BlocProvider(
+            create: (context) {
+              return ExerciseCustomizerCubit()..customizeExercise(
+                userID:
+                    context.read<AuthCubit>().state.mapOrNull(
+                      authenticated: (state) => state.user.uid,
+                    )!,
+                nativeLanguage:
+                    context.read<AuthCubit>().state.mapOrNull(
+                      authenticated: (state) => state.user.nativeLanguage,
+                    )!,
+                goal:
+                    context.read<AuthCubit>().state.mapOrNull(
+                      authenticated: (state) => state.user.goal,
+                    )!,
+                level:
+                    context.read<AuthCubit>().state.mapOrNull(
+                      authenticated:
+                          (state) => state.user.englishMastery.toString().split('.').last,
+                    )!,
+                exercise: exercise,
+              );
+            },
+          ),
         ],
         child: BlocConsumer<RecorderCubit, RecorderState>(
           listener: (context, state) {
@@ -143,14 +167,24 @@ class SessionPage extends StatelessWidget {
           Expanded(
             flex: 5,
             child: OutlinedCard(
-              child: BlocBuilder<OnboardingExerciseCubit, OnboardingExerciseState>(
+              child: BlocBuilder<ExerciseCustomizerCubit, ExerciseCustomizerState>(
                 builder: (context, state) {
                   return state.maybeMap(
                     loading: (_) => const Center(child: Text("Loading...")),
                     loaded: (value) {
                       return Padding(
                         padding: const EdgeInsets.all(0.0),
-                        child: SingleChildScrollView(child: Text(value.exercise.instructions![0]['content'].toString())),
+                        child: SingleChildScrollView(
+                          child: MarkdownBody(
+                            data: value.exercise.instructions![0],
+                            styleSheet: MarkdownStyleSheet(
+                              h2: Theme.of(context).textTheme.titleLarge!.copyWith(
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                              strong: const TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
                       );
                     },
                     error: (error) => Center(child: Text("Error: ${error.message}")),
@@ -250,7 +284,7 @@ class SessionPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(24.0).copyWith(bottom: 0),
             child: const Greeting(
-              iconPath: "assets/images/greeting_icon.svg",
+              iconPath: "assets/icons/greeting.svg",
               message: "we've recorded your speech!",
               color: Colors.black,
             ),
