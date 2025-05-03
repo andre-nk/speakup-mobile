@@ -13,7 +13,7 @@ class CurriculumCustomizerCubit extends Cubit<CurriculumCustomizerState> {
     required SpeechAnalysisFeedback speechAnalysisFeedback,
   }) async {
     try {
-      final client = GeminiClient(apiKey: 'AIzaSyCbfpX1QtbZ_cr5x_kqt12Xj4IOoar0yso');
+      final client = GeminiClient(apiKey: '');
 
       // Emit loading state
       emit(const CurriculumCustomizerState.loading());

@@ -19,7 +19,7 @@ import 'package:speakup_final/view/screens/wrapper/wrapper_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Gemini.init(apiKey: 'AIzaSyCbfpX1QtbZ_cr5x_kqt12Xj4IOoar0yso');
+  Gemini.init(apiKey: '');
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
