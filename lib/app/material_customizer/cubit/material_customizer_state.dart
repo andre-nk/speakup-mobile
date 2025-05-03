@@ -9,7 +9,8 @@ class MaterialCustomizerState with _$MaterialCustomizerState {
   const factory MaterialCustomizerState.loading() = _Loading;
 
   /// Loaded state - exercise has been successfully loaded
-  const factory MaterialCustomizerState.loaded({required Material material}) = _Loaded;
+  const factory MaterialCustomizerState.loaded({required MaterialContent material}) =
+      _Loaded;
 
   /// Error state - an error occurred while loading the exercise
   const factory MaterialCustomizerState.error({required String message}) = _Error;

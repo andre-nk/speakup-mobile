@@ -27,7 +27,7 @@ mixin _$Section {
   int get sequence => throw _privateConstructorUsedError;
 
   /// Title of the section
-  String get title => throw _privateConstructorUsedError;
+  String? get title => throw _privateConstructorUsedError;
 
   /// References to materials in this section
   @JsonKey(name: 'materialIds')
@@ -60,7 +60,7 @@ abstract class $SectionCopyWith<$Res> {
   $Res call({
     String? id,
     int sequence,
-    String title,
+    String? title,
     @JsonKey(name: 'materialIds') List<String>? materialIds,
     List<Material>? materialObjects,
     @JsonKey(name: 'exerciseIds') List<String>? exerciseIds,
@@ -85,7 +85,7 @@ class _$SectionCopyWithImpl<$Res, $Val extends Section>
   $Res call({
     Object? id = freezed,
     Object? sequence = null,
-    Object? title = null,
+    Object? title = freezed,
     Object? materialIds = freezed,
     Object? materialObjects = freezed,
     Object? exerciseIds = freezed,
@@ -104,10 +104,10 @@ class _$SectionCopyWithImpl<$Res, $Val extends Section>
                     : sequence // ignore: cast_nullable_to_non_nullable
                         as int,
             title:
-                null == title
+                freezed == title
                     ? _value.title
                     : title // ignore: cast_nullable_to_non_nullable
-                        as String,
+                        as String?,
             materialIds:
                 freezed == materialIds
                     ? _value.materialIds
@@ -145,7 +145,7 @@ abstract class _$$SectionImplCopyWith<$Res> implements $SectionCopyWith<$Res> {
   $Res call({
     String? id,
     int sequence,
-    String title,
+    String? title,
     @JsonKey(name: 'materialIds') List<String>? materialIds,
     List<Material>? materialObjects,
     @JsonKey(name: 'exerciseIds') List<String>? exerciseIds,
@@ -169,7 +169,7 @@ class __$$SectionImplCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? sequence = null,
-    Object? title = null,
+    Object? title = freezed,
     Object? materialIds = freezed,
     Object? materialObjects = freezed,
     Object? exerciseIds = freezed,
@@ -188,10 +188,10 @@ class __$$SectionImplCopyWithImpl<$Res>
                 : sequence // ignore: cast_nullable_to_non_nullable
                     as int,
         title:
-            null == title
+            freezed == title
                 ? _value.title
                 : title // ignore: cast_nullable_to_non_nullable
-                    as String,
+                    as String?,
         materialIds:
             freezed == materialIds
                 ? _value._materialIds
@@ -245,7 +245,7 @@ class _$SectionImpl implements _Section {
 
   /// Title of the section
   @override
-  final String title;
+  final String? title;
 
   /// References to materials in this section
   final List<String>? _materialIds;
@@ -364,7 +364,7 @@ abstract class _Section implements Section {
   const factory _Section({
     final String? id,
     required final int sequence,
-    required final String title,
+    required final String? title,
     @JsonKey(name: 'materialIds') final List<String>? materialIds,
     final List<Material>? materialObjects,
     @JsonKey(name: 'exerciseIds') final List<String>? exerciseIds,
@@ -382,7 +382,7 @@ abstract class _Section implements Section {
 
   /// Title of the section
   @override
-  String get title;
+  String? get title;
 
   /// References to materials in this section
   @override

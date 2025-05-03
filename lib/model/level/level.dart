@@ -14,10 +14,10 @@ class Level with _$Level {
     String? id,
     
     /// Title of the level
-    required String title,
+    required String? title,
     
     /// Level difficulty (beginner, intermediate, advanced)
-    required String level,
+    required String? level,
     
     /// References to sections in this level
     List<String>? sectionIds,

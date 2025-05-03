@@ -18,6 +18,7 @@ class MaterialCustomizerCubit extends Cubit<MaterialCustomizerState> {
     required String nativeLanguage,
     required String goal,
     required String level,
+    required String struggle,
     required Material material,
   }) async {
     try {
@@ -25,18 +26,21 @@ class MaterialCustomizerCubit extends Cubit<MaterialCustomizerState> {
       emit(const MaterialCustomizerState.loading());
 
       // Fetch exercise from repository
-      final material = await _repository.customizeAndStoreMaterial(
-        userID,
-        nativeLanguage,
-        goal,
-        level,
+      final customMaterial = await _repository.customizeAndStoreMaterial(
+        title: material.title ?? "",
+        subtitle: material.subtitle ?? "",
+        nativeLanguage: nativeLanguage,
+        goal: goal,
+        proficiencyLevel: level,
+        struggle: struggle
       );
-      emit(MaterialCustomizerState.loaded(material: material));
+
+      emit(MaterialCustomizerState.loaded(material: customMaterial));
     } catch (e) {
       // Emit error state with the error message
       emit(
         MaterialCustomizerState.error(
-          message: 'Failed to load exercise: ${e.toString()}',
+          message: 'Failed to load material: ${e.toString()}',
         ),
       );
     }

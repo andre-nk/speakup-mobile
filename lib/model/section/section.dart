@@ -17,7 +17,7 @@ class Section with _$Section {
     required int sequence,
     
     /// Title of the section
-    required String title,
+    required String? title,
     
     /// References to materials in this section
     @JsonKey(name: 'materialIds')

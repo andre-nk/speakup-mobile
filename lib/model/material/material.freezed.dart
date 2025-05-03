@@ -27,7 +27,7 @@ mixin _$Material {
   int get sequence => throw _privateConstructorUsedError;
 
   /// Title of the material
-  String get title => throw _privateConstructorUsedError;
+  String? get title => throw _privateConstructorUsedError;
 
   /// Subtitle of the material (optional)
   String? get subtitle => throw _privateConstructorUsedError;
@@ -57,7 +57,7 @@ abstract class $MaterialCopyWith<$Res> {
   $Res call({
     String? id,
     int sequence,
-    String title,
+    String? title,
     String? subtitle,
     List<dynamic>? content,
     @JsonKey(name: 'relatedExercises') List<String>? relatedExerciseIds,
@@ -81,7 +81,7 @@ class _$MaterialCopyWithImpl<$Res, $Val extends Material>
   $Res call({
     Object? id = freezed,
     Object? sequence = null,
-    Object? title = null,
+    Object? title = freezed,
     Object? subtitle = freezed,
     Object? content = freezed,
     Object? relatedExerciseIds = freezed,
@@ -99,10 +99,10 @@ class _$MaterialCopyWithImpl<$Res, $Val extends Material>
                     : sequence // ignore: cast_nullable_to_non_nullable
                         as int,
             title:
-                null == title
+                freezed == title
                     ? _value.title
                     : title // ignore: cast_nullable_to_non_nullable
-                        as String,
+                        as String?,
             subtitle:
                 freezed == subtitle
                     ? _value.subtitle
@@ -136,7 +136,7 @@ abstract class _$$MaterialImplCopyWith<$Res>
   $Res call({
     String? id,
     int sequence,
-    String title,
+    String? title,
     String? subtitle,
     List<dynamic>? content,
     @JsonKey(name: 'relatedExercises') List<String>? relatedExerciseIds,
@@ -159,7 +159,7 @@ class __$$MaterialImplCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? sequence = null,
-    Object? title = null,
+    Object? title = freezed,
     Object? subtitle = freezed,
     Object? content = freezed,
     Object? relatedExerciseIds = freezed,
@@ -177,10 +177,10 @@ class __$$MaterialImplCopyWithImpl<$Res>
                 : sequence // ignore: cast_nullable_to_non_nullable
                     as int,
         title:
-            null == title
+            freezed == title
                 ? _value.title
                 : title // ignore: cast_nullable_to_non_nullable
-                    as String,
+                    as String?,
         subtitle:
             freezed == subtitle
                 ? _value.subtitle
@@ -226,7 +226,7 @@ class _$MaterialImpl implements _Material {
 
   /// Title of the material
   @override
-  final String title;
+  final String? title;
 
   /// Subtitle of the material (optional)
   @override
@@ -313,7 +313,7 @@ abstract class _Material implements Material {
   const factory _Material({
     final String? id,
     required final int sequence,
-    required final String title,
+    required final String? title,
     final String? subtitle,
     final List<dynamic>? content,
     @JsonKey(name: 'relatedExercises') final List<String>? relatedExerciseIds,
@@ -331,7 +331,7 @@ abstract class _Material implements Material {
 
   /// Title of the material
   @override
-  String get title;
+  String? get title;
 
   /// Subtitle of the material (optional)
   @override

@@ -8,8 +8,8 @@ part of 'level.dart';
 
 _$LevelImpl _$$LevelImplFromJson(Map<String, dynamic> json) => _$LevelImpl(
   id: json['id'] as String?,
-  title: json['title'] as String,
-  level: json['level'] as String,
+  title: json['title'] as String?,
+  level: json['level'] as String?,
   sectionIds:
       (json['sectionIds'] as List<dynamic>?)?.map((e) => e as String).toList(),
   sectionObjects:

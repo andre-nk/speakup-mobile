@@ -11,7 +11,7 @@ _$SectionImpl _$$SectionImplFromJson(
 ) => _$SectionImpl(
   id: json['id'] as String?,
   sequence: (json['sequence'] as num).toInt(),
-  title: json['title'] as String,
+  title: json['title'] as String?,
   materialIds:
       (json['materialIds'] as List<dynamic>?)?.map((e) => e as String).toList(),
   materialObjects:

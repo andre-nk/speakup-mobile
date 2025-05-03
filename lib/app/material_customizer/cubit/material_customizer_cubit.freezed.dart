@@ -21,21 +21,21 @@ mixin _$MaterialCustomizerState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Material material) loaded,
+    required TResult Function(MaterialContent material) loaded,
     required TResult Function(String message) error,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Material material)? loaded,
+    TResult? Function(MaterialContent material)? loaded,
     TResult? Function(String message)? error,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Material material)? loaded,
+    TResult Function(MaterialContent material)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
@@ -133,7 +133,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Material material) loaded,
+    required TResult Function(MaterialContent material) loaded,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -144,7 +144,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Material material)? loaded,
+    TResult? Function(MaterialContent material)? loaded,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -155,7 +155,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Material material)? loaded,
+    TResult Function(MaterialContent material)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -252,7 +252,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Material material) loaded,
+    required TResult Function(MaterialContent material) loaded,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -263,7 +263,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Material material)? loaded,
+    TResult? Function(MaterialContent material)? loaded,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -274,7 +274,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Material material)? loaded,
+    TResult Function(MaterialContent material)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -333,9 +333,7 @@ abstract class _$$LoadedImplCopyWith<$Res> {
     $Res Function(_$LoadedImpl) then,
   ) = __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({Material material});
-
-  $MaterialCopyWith<$Res> get material;
+  $Res call({MaterialContent material});
 }
 
 /// @nodoc
@@ -358,19 +356,9 @@ class __$$LoadedImplCopyWithImpl<$Res>
             null == material
                 ? _value.material
                 : material // ignore: cast_nullable_to_non_nullable
-                    as Material,
+                    as MaterialContent,
       ),
     );
-  }
-
-  /// Create a copy of MaterialCustomizerState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $MaterialCopyWith<$Res> get material {
-    return $MaterialCopyWith<$Res>(_value.material, (value) {
-      return _then(_value.copyWith(material: value));
-    });
   }
 }
 
@@ -380,7 +368,7 @@ class _$LoadedImpl implements _Loaded {
   const _$LoadedImpl({required this.material});
 
   @override
-  final Material material;
+  final MaterialContent material;
 
   @override
   String toString() {
@@ -412,7 +400,7 @@ class _$LoadedImpl implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Material material) loaded,
+    required TResult Function(MaterialContent material) loaded,
     required TResult Function(String message) error,
   }) {
     return loaded(material);
@@ -423,7 +411,7 @@ class _$LoadedImpl implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Material material)? loaded,
+    TResult? Function(MaterialContent material)? loaded,
     TResult? Function(String message)? error,
   }) {
     return loaded?.call(material);
@@ -434,7 +422,7 @@ class _$LoadedImpl implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Material material)? loaded,
+    TResult Function(MaterialContent material)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -483,9 +471,10 @@ class _$LoadedImpl implements _Loaded {
 }
 
 abstract class _Loaded implements MaterialCustomizerState {
-  const factory _Loaded({required final Material material}) = _$LoadedImpl;
+  const factory _Loaded({required final MaterialContent material}) =
+      _$LoadedImpl;
 
-  Material get material;
+  MaterialContent get material;
 
   /// Create a copy of MaterialCustomizerState
   /// with the given fields replaced by the non-null parameter values.
@@ -567,7 +556,7 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Material material) loaded,
+    required TResult Function(MaterialContent material) loaded,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -578,7 +567,7 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Material material)? loaded,
+    TResult? Function(MaterialContent material)? loaded,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -589,7 +578,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Material material)? loaded,
+    TResult Function(MaterialContent material)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {

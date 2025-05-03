@@ -12,6 +12,7 @@ import 'package:speakup_final/app/auth/cubit/auth_cubit.dart';
 import 'package:speakup_final/app/content_recommendation/cubit/content_recommendation_cubit.dart';
 import 'package:speakup_final/app/content_recommendation/cubit/content_recommendation_state.dart';
 import 'package:speakup_final/app/streak/cubit/streak_cubit.dart';
+import 'package:speakup_final/view/screens/article/article_page.dart';
 
 class _DayCircle extends StatelessWidget {
   final String dayLabel;
@@ -191,7 +192,7 @@ class HomePage extends StatelessWidget {
                               SizedBox(
                                 width: double.infinity,
                                 child: Button(
-                                  text: FlutterI18n.translate(context, "home.vocav"),
+                                  text: FlutterI18n.translate(context, "home.vocab"),
                                   onPressed: () {},
                                   backgroundColor:
                                       Theme.of(context).colorScheme.onSecondary,
@@ -341,57 +342,68 @@ class HomePage extends StatelessWidget {
                         return SliverList(
                           delegate: SliverChildBuilderDelegate((context, index) {
                             final recommendation = recommendations[index];
-                            return Padding(
-                              padding: const EdgeInsets.only(bottom: 20.0),
-                              child: Container(
-                                padding: const EdgeInsets.all(20),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(16),
-                                  color: Theme.of(context).colorScheme.surface,
-                                ),
-                                child: Column(
-                                  children: [
-                                    Container(
-                                      width: double.infinity,
-                                      height: 200,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(12),
-                                        image: DecorationImage(
-                                          image: NetworkImage(
-                                            recommendation.coverImage ?? "",
+                            return GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => ArticlePage(
+                                      article: recommendation,
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.only(bottom: 20.0),
+                                child: Container(
+                                  padding: const EdgeInsets.all(20),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(16),
+                                    color: Theme.of(context).colorScheme.surface,
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        width: double.infinity,
+                                        height: 200,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(12),
+                                          image: DecorationImage(
+                                            image: NetworkImage(
+                                              recommendation.coverImage ?? "",
+                                            ),
+                                            fit: BoxFit.cover,
                                           ),
-                                          fit: BoxFit.cover,
                                         ),
                                       ),
-                                    ),
-                                    const SizedBox(height: 16),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 0.0,
+                                      const SizedBox(height: 16),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 0.0,
+                                        ),
+                                        child: Column(
+                                          children: [
+                                            Text(
+                                              recommendation.title,
+                                              style: Theme.of(context).textTheme.titleLarge,
+                                            ),
+                                            const SizedBox(height: 8),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                Text(
+                                                  recommendation.author,
+                                                  style:
+                                                      Theme.of(context).textTheme.bodySmall,
+                                                  overflow: TextOverflow.ellipsis,
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                      child: Column(
-                                        children: [
-                                          Text(
-                                            recommendation.title,
-                                            style: Theme.of(context).textTheme.titleLarge,
-                                          ),
-                                          const SizedBox(height: 8),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Text(
-                                                recommendation.author,
-                                                style:
-                                                    Theme.of(context).textTheme.bodySmall,
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                             );

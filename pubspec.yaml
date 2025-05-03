@@ -37,6 +37,7 @@ dependencies:
   flutter_gemini: ^3.0.0
   fl_chart: ^0.71.0
   flutter_markdown: ^0.7.7
+  marquee: ^2.3.0
 
 dev_dependencies:
   flutter_test:

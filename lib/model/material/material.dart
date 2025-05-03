@@ -15,7 +15,7 @@ class Material with _$Material {
     required int sequence,
     
     /// Title of the material
-    required String title,
+    required String? title,
     
     /// Subtitle of the material (optional)
     String? subtitle,

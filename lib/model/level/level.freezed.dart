@@ -24,10 +24,10 @@ mixin _$Level {
   String? get id => throw _privateConstructorUsedError;
 
   /// Title of the level
-  String get title => throw _privateConstructorUsedError;
+  String? get title => throw _privateConstructorUsedError;
 
   /// Level difficulty (beginner, intermediate, advanced)
-  String get level => throw _privateConstructorUsedError;
+  String? get level => throw _privateConstructorUsedError;
 
   /// References to sections in this level
   List<String>? get sectionIds => throw _privateConstructorUsedError;
@@ -51,8 +51,8 @@ abstract class $LevelCopyWith<$Res> {
   @useResult
   $Res call({
     String? id,
-    String title,
-    String level,
+    String? title,
+    String? level,
     List<String>? sectionIds,
     List<Section>? sectionObjects,
   });
@@ -74,8 +74,8 @@ class _$LevelCopyWithImpl<$Res, $Val extends Level>
   @override
   $Res call({
     Object? id = freezed,
-    Object? title = null,
-    Object? level = null,
+    Object? title = freezed,
+    Object? level = freezed,
     Object? sectionIds = freezed,
     Object? sectionObjects = freezed,
   }) {
@@ -87,15 +87,15 @@ class _$LevelCopyWithImpl<$Res, $Val extends Level>
                     : id // ignore: cast_nullable_to_non_nullable
                         as String?,
             title:
-                null == title
+                freezed == title
                     ? _value.title
                     : title // ignore: cast_nullable_to_non_nullable
-                        as String,
+                        as String?,
             level:
-                null == level
+                freezed == level
                     ? _value.level
                     : level // ignore: cast_nullable_to_non_nullable
-                        as String,
+                        as String?,
             sectionIds:
                 freezed == sectionIds
                     ? _value.sectionIds
@@ -122,8 +122,8 @@ abstract class _$$LevelImplCopyWith<$Res> implements $LevelCopyWith<$Res> {
   @useResult
   $Res call({
     String? id,
-    String title,
-    String level,
+    String? title,
+    String? level,
     List<String>? sectionIds,
     List<Section>? sectionObjects,
   });
@@ -144,8 +144,8 @@ class __$$LevelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? title = null,
-    Object? level = null,
+    Object? title = freezed,
+    Object? level = freezed,
     Object? sectionIds = freezed,
     Object? sectionObjects = freezed,
   }) {
@@ -157,15 +157,15 @@ class __$$LevelImplCopyWithImpl<$Res>
                 : id // ignore: cast_nullable_to_non_nullable
                     as String?,
         title:
-            null == title
+            freezed == title
                 ? _value.title
                 : title // ignore: cast_nullable_to_non_nullable
-                    as String,
+                    as String?,
         level:
-            null == level
+            freezed == level
                 ? _value.level
                 : level // ignore: cast_nullable_to_non_nullable
-                    as String,
+                    as String?,
         sectionIds:
             freezed == sectionIds
                 ? _value._sectionIds
@@ -201,11 +201,11 @@ class _$LevelImpl implements _Level {
 
   /// Title of the level
   @override
-  final String title;
+  final String? title;
 
   /// Level difficulty (beginner, intermediate, advanced)
   @override
-  final String level;
+  final String? level;
 
   /// References to sections in this level
   final List<String>? _sectionIds;
@@ -284,8 +284,8 @@ class _$LevelImpl implements _Level {
 abstract class _Level implements Level {
   const factory _Level({
     final String? id,
-    required final String title,
-    required final String level,
+    required final String? title,
+    required final String? level,
     final List<String>? sectionIds,
     final List<Section>? sectionObjects,
   }) = _$LevelImpl;
@@ -297,11 +297,11 @@ abstract class _Level implements Level {
 
   /// Title of the level
   @override
-  String get title;
+  String? get title;
 
   /// Level difficulty (beginner, intermediate, advanced)
   @override
-  String get level;
+  String? get level;
 
   /// References to sections in this level
   @override

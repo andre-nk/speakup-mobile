@@ -10,7 +10,7 @@ _$MaterialImpl _$$MaterialImplFromJson(Map<String, dynamic> json) =>
     _$MaterialImpl(
       id: json['id'] as String?,
       sequence: (json['sequence'] as num).toInt(),
-      title: json['title'] as String,
+      title: json['title'] as String?,
       subtitle: json['subtitle'] as String?,
       content: json['content'] as List<dynamic>?,
       relatedExerciseIds:

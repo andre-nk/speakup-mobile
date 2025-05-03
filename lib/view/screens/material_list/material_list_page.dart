@@ -80,7 +80,7 @@ class MaterialListPage extends StatelessWidget {
                               widgets.add(
                                 Collapsible(
                                   sectionNumber: "$sectionIndex",
-                                  title: section.title,
+                                  title: section.title ?? "",
                                   children: materialTiles,
                                 ),
                               );
