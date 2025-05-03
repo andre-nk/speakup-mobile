@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
 
     <application
-        android:label="speakup_final"
+        android:label="SpeakUp"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity

@@ -1,0 +1,96 @@
+{
+  "landing": {
+    "title": "SpeakUp",
+    "tagline": "自信を持った英語への旅はここから始まります！",
+    "sso": "Googleで続行",
+    "tnc": "続行すると、SpeakUpの利用規約に同意したことになります。プライバシーポリシーでデータの処理方法についてご確認ください"
+  },
+  "native_language_picker": {
+    "greeting": "こんにちは、Andreas！",
+    "heading": "あなたの\n母国語は何ですか？",
+    "subheading": "楽しい学習とパーソナライズされた体験のために、お好みの言語を選んでください！"
+  },
+  "english_mastery_picker": {
+    "greeting": "次は...",
+    "heading": "あなたの\n英語レベルは？",
+    "subheading": "学習体験をパーソナライズするために、現在の英語レベルを選択してください。",
+    "beginner": "初級",
+    "intermediate": "中級",
+    "advanced": "上級",
+    "beginner_subtitle": "英語の基礎を理解し始めたところです。語彙を増やし、簡単な文章を作り、日常会話で自信を持って話せるように取り組んでいます",
+    "intermediate_subtitle": "基本はマスターしました！基本的な語彙や簡単なフレーズに慣れています。より長く複雑な文章で話す自信をつけているところです。",
+    "advanced_subtitle": "日常会話で自信を持って話せ、基本をマスターし、より幅広い語彙と文章構造を使用しています。このレベルでは、流暢さを磨き、文法を完璧にしています。"
+  },
+  "goal_picker": {
+    "greeting": "最後の質問...",
+    "heading": "あなたの\n学習目標は？",
+    "subheading": "体験をカスタマイズするために、英語を学ぶ理由を教えてください。",
+    "next": "次へ",
+    "textfield_label": "あなたの英語学習の目標は何ですか？",
+    "textfield_hint": "ここに目標を入力してください",
+    "suggested_goals": "おすすめの目標：",
+    "travel": "海外旅行",
+    "business": "ビジネスコミュニケーション",
+    "friends": "友達を作る",
+    "study": "学術研究",
+    "public": "パブリックスピーキング",
+    "interview": "就職面接",
+    "conversation": "カジュアルな会話",
+    "movie": "字幕なしで映画を観る",
+    "deadline": "期限を設定する（任意）：",
+    "no_deadline": "期限設定なし",
+    "clear_deadline": "期限をクリア"
+  },
+  "onboarding_session": {
+    "greeting": "さあ、SpeakUpを試してみましょう！",
+    "error_no_exercise": "利用可能な指示がありません",
+    "loading": "読み込み中...",
+    "next": "次へ",
+    "start": "マイクをタップして開始！",
+    "start_description": "話し始めると、あなたの英語力を評価します！",
+    "finished": "スピーチを録音しました！",
+    "result": "結果が出ました！",
+    "view_button": "表示",
+    "ai_loading": "AIがあなたの練習を分析しています..."
+  },
+  "session_result": {
+    "greeting": "結果が出ました！",
+    "grammar": "文法ミス",
+    "filler": "フィラーワード",
+    "common": "一般的な単語",
+    "formality": "フォーマル度スコア",
+    "formality_score": "あなたのフォーマル度スコアは",
+    "formality_classification": "分類：",
+    "wpm": "1分あたりの単語数（WPM）",
+    "pitch": "ピッチの変動",
+    "summary": "要約",
+    "button": "改善しましょう！",
+    "transcription": "書き起こし"
+  },
+  "home": {
+    "quick": "クイック練習",
+    "quick_description": "短い文章を通常のペースで読み、明瞭さを保ちながら徐々にスピードを上げましょう。",
+    "vocab": "今日の語彙を探索しよう！",
+    "jump": "続きから始める",
+    "high": "高い流暢さと自信",
+    "thought": "10.2. 思考のチャンキング",
+    "thought_subtitle": "自然にアイデアをグループ化して、滑らかでクリアに話しましょう。",
+    "content": "書籍と映画",
+    "content_subtitle": "現在の興味：金融に関連するAIキュレーションの書籍や映画のおすすめをお楽しみください！",
+    "feeds": "フィード"
+  },
+  "exercise_list": {
+    "title": "練習",
+    "ai": "AI推奨の練習",
+    "ai_description": "短い文章を通常のペースで読み、明瞭さを保ちながら徐々にスピードを上げましょう。",
+    "ai_title": "スピードブースト",
+    "ai_details": "2分 - 上級",
+    "vocab_title": "今日の語彙：金融！",
+    "vocab_description": "短い文章を通常のペースで読み、明瞭さを保ちながら徐々にスピードを上げましょう。",
+    "vocab_button": "今日の語彙を探索しよう！",
+    "practice_heading": "練習リスト"
+  },
+  "material_list": {
+    "title": "カリキュラム"
+  }
+}

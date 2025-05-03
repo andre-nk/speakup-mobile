@@ -21,7 +21,8 @@ SpeechFeedback _$SpeechFeedbackFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SpeechFeedback {
-  String get part1 => throw _privateConstructorUsedError;
+  String get part1 =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(fromJson: _strugglesFromJson, toJson: _strugglesToJson)
   Struggles get part2 => throw _privateConstructorUsedError;
 
@@ -143,6 +144,7 @@ class _$SpeechFeedbackImpl implements _SpeechFeedback {
 
   @override
   final String part1;
+  // ignore: invalid_annotation_target
   @override
   @JsonKey(fromJson: _strugglesFromJson, toJson: _strugglesToJson)
   final Struggles part2;
@@ -193,7 +195,7 @@ abstract class _SpeechFeedback implements SpeechFeedback {
       _$SpeechFeedbackImpl.fromJson;
 
   @override
-  String get part1;
+  String get part1; // ignore: invalid_annotation_target
   @override
   @JsonKey(fromJson: _strugglesFromJson, toJson: _strugglesToJson)
   Struggles get part2;

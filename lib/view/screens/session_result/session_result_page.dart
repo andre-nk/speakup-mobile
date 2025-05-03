@@ -587,58 +587,48 @@ class SessionResultPage extends StatelessWidget {
                           },
                         ),
                         const SizedBox(height: 48),
-                        isHistory != null && isHistory!
-                            ? BlocBuilder<SummaryCubit, SummaryState>(
-                              builder: (context, state) {
-                                return SizedBox(
-                                  width: double.infinity,
-                                  child: Button(
-                                    text: FlutterI18n.translate(
-                                      context,
-                                      "session_result.button",
+                        BlocBuilder<SummaryCubit, SummaryState>(
+                          builder: (context, state) {
+                            return SizedBox(
+                              width: double.infinity,
+                              child: Button(
+                                text: FlutterI18n.translate(
+                                  context,
+                                  "session_result.button",
+                                ),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) {
+                                        return SuggestedLearningPathPage(
+                                          speechAnalysisFeedback: SpeechAnalysisFeedback(
+                                            wordsPerMinute:
+                                                session.calculateOverallWPM().toInt(),
+                                            isMonotone:
+                                                session
+                                                        .pitchResult
+                                                        .pitchAnalysis
+                                                        .isMonotone
+                                                    ? true
+                                                    : false,
+                                            silentRatio: session.pitchResult.silentRatio,
+                                            mostCommonWords: session.mostCommonWords,
+                                            fillerWords: session.filler.chunks.length,
+                                            formalityScore:
+                                                session.formality.formalityScore.toInt(),
+                                            grammarMistakes: session.grammarMistakes,
+                                            transcript: session.transcript,
+                                          ),
+                                        );
+                                      },
                                     ),
-                                    onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) {
-                                            return SuggestedLearningPathPage(
-                                              speechAnalysisFeedback:
-                                                  SpeechAnalysisFeedback(
-                                                    wordsPerMinute:
-                                                        session
-                                                            .calculateOverallWPM()
-                                                            .toInt(),
-                                                    isMonotone:
-                                                        session
-                                                                .pitchResult
-                                                                .pitchAnalysis
-                                                                .isMonotone
-                                                            ? true
-                                                            : false,
-                                                    silentRatio:
-                                                        session.pitchResult.silentRatio,
-                                                    mostCommonWords:
-                                                        session.mostCommonWords,
-                                                    fillerWords:
-                                                        session.filler.chunks.length,
-                                                    formalityScore:
-                                                        session.formality.formalityScore
-                                                            .toInt(),
-                                                    grammarMistakes:
-                                                        session.grammarMistakes,
-                                                    transcript: session.transcript,
-                                                  ),
-                                            );
-                                          },
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                );
-                              },
-                            )
-                            : const SizedBox(),
+                                  );
+                                },
+                              ),
+                            );
+                          },
+                        ),
                       ],
                     ),
                   ),

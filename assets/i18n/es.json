@@ -1,0 +1,96 @@
+{
+  "landing": {
+    "title": "SpeakUp",
+    "tagline": "¡Tu viaje hacia un inglés con confianza comienza aquí!",
+    "sso": "Continuar con Google",
+    "tnc": "Al continuar, aceptas los Términos de SpeakUp. Aprende cómo procesamos tus datos en nuestra política de privacidad"
+  },
+  "native_language_picker": {
+    "greeting": "¡hola, Andreas!",
+    "heading": "¿Cuál es tu\nlengua materna?",
+    "subheading": "¡Elige tu idioma preferido para un aprendizaje divertido y una experiencia personalizada!"
+  },
+  "english_mastery_picker": {
+    "greeting": "a continuación...",
+    "heading": "¿Cuál es tu\nnivel de inglés?",
+    "subheading": "Selecciona tu nivel de inglés actual para personalizar tu experiencia de aprendizaje.",
+    "beginner": "Principiante",
+    "intermediate": "Intermedio",
+    "advanced": "Avanzado",
+    "beginner_subtitle": "Acabas de comenzar a entender los fundamentos del inglés. Estás trabajando en ampliar tu vocabulario, formar oraciones simples y ganar confianza para hablar en situaciones cotidianas",
+    "intermediate_subtitle": "¡Ya dominas lo básico! Ya estás familiarizado con el vocabulario esencial y frases simples. Estás ganando confianza para hablar en oraciones más largas y complejas.",
+    "advanced_subtitle": "Puedes hablar con confianza en situaciones cotidianas, has dominado lo básico, y utilizas una amplia gama de vocabulario y estructuras de oraciones. En este nivel, estás refinando tu fluidez y perfeccionando tu gramática."
+  },
+  "goal_picker": {
+    "greeting": "último paso...",
+    "heading": "¿Cuál es tu\nobjetivo de aprendizaje?",
+    "subheading": "Dinos por qué estás aprendiendo inglés para personalizar tu experiencia.",
+    "next": "Siguiente",
+    "textfield_label": "¿Cuál es tu objetivo de aprendizaje de inglés?",
+    "textfield_hint": "Ingresa tu objetivo aquí",
+    "suggested_goals": "Objetivos sugeridos:",
+    "travel": "Viajar al extranjero",
+    "business": "Comunicación de negocios",
+    "friends": "Hacer amigos",
+    "study": "Estudios académicos",
+    "public": "Hablar en público",
+    "interview": "Entrevista de trabajo",
+    "conversation": "Conversación casual",
+    "movie": "Ver películas sin subtítulos",
+    "deadline": "Establecer una fecha límite (opcional):",
+    "no_deadline": "Sin fecha límite establecida",
+    "clear_deadline": "Borrar fecha límite"
+  },
+  "onboarding_session": {
+    "greeting": "¡ahora, probemos SpeakUp!",
+    "error_no_exercise": "No hay instrucciones disponibles",
+    "loading": "Cargando...",
+    "next": "Siguiente",
+    "start": "¡Toca el micrófono para comenzar!",
+    "start_description": "¡Empieza a hablar y evaluaremos tu nivel de inglés!",
+    "finished": "¡hemos grabado tu discurso!",
+    "result": "¡Tus resultados están aquí!",
+    "view_button": "Ver",
+    "ai_loading": "La IA está analizando tu ejercicio..."
+  },
+  "session_result": {
+    "greeting": "¡Tus resultados están aquí!",
+    "grammar": "Errores gramaticales",
+    "filler": "Muletillas",
+    "common": "Palabras comunes",
+    "formality": "Puntuación de formalidad",
+    "formality_score": "Tu puntuación de formalidad es",
+    "formality_classification": "Clasificación: ",
+    "wpm": "Palabras por minuto (PPM)",
+    "pitch": "Fluctuación del tono",
+    "summary": "Resumen",
+    "button": "¡Vamos a mejorar eso!",
+    "transcription": "Transcripción"
+  },
+  "home": {
+    "quick": "práctica rápida",
+    "quick_description": "Lee un pasaje corto a tu ritmo normal, luego aumenta gradualmente la velocidad mientras mantienes la claridad.",
+    "vocab": "¡Explora los vocabularios de hoy!",
+    "jump": "Continúa donde lo dejaste",
+    "high": "Alta fluidez y confianza",
+    "thought": "10.2. Agrupación de pensamientos",
+    "thought_subtitle": "Agrupa ideas naturalmente para hablar con fluidez y claridad.",
+    "content": "Libros y películas",
+    "content_subtitle": "¡Disfruta de nuestras recomendaciones curadas por IA de libros o películas relacionadas con tu interés actual: finanzas!",
+    "feeds": "Contenidos"
+  },
+  "exercise_list": {
+    "title": "Práctica",
+    "ai": "Práctica sugerida por IA",
+    "ai_description": "Lee un pasaje corto a tu ritmo normal, luego aumenta gradualmente la velocidad mientras mantienes la claridad.",
+    "ai_title": "Aumento de velocidad",
+    "ai_details": "2 minutos - Avanzado",
+    "vocab_title": "Vocabulario diario: ¡Finanzas!",
+    "vocab_description": "Lee un pasaje corto a tu ritmo normal, luego aumenta gradualmente la velocidad mientras mantienes la claridad.",
+    "vocab_button": "¡Explora los vocabularios de hoy!",
+    "practice_heading": "Lista de prácticas"
+  },
+  "material_list": {
+    "title": "Plan de estudios"
+  }
+}

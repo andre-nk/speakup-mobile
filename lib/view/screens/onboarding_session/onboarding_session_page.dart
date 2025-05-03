@@ -2,6 +2,7 @@ import 'package:audio_waveforms/audio_waveforms.dart' as aw;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:igris/components/bottomsheet.dart';
 import 'package:igris/components/fab.dart';
@@ -15,7 +16,9 @@ import 'package:speakup_final/app/onboarding_exercise/onboarding_exercise_state.
 import 'package:speakup_final/app/recorder/cubit/recorder_cubit.dart';
 import 'package:speakup_final/app/player/cubit/player_cubit.dart';
 import 'package:speakup_final/app/streak/cubit/streak_cubit.dart';
+import 'package:speakup_final/model/session/session.dart';
 import 'package:speakup_final/utils/format_duration.dart';
+import 'package:speakup_final/view/screens/session_result/session_result_page.dart';
 
 class OnboardingSessionPage extends StatelessWidget {
   const OnboardingSessionPage({super.key});
@@ -59,7 +62,7 @@ class OnboardingSessionPage extends StatelessWidget {
             state.whenOrNull(
               stopped: (filePath) {
                 context.read<PlayerCubit>().initPlayer(filePath: filePath);
-                context.read<AiCubit>().uploadAudio(
+                context.read<AiCubit>().mockUploadAudio(
                   audioFilePath: filePath,
                   userID: context.read<AuthCubit>().state.maybeWhen(
                     authenticated: (user) => user.uid,
@@ -181,8 +184,14 @@ class OnboardingSessionPage extends StatelessWidget {
                       return Padding(
                         padding: const EdgeInsets.all(0.0),
                         child: SingleChildScrollView(
-                          child: Text(
-                            value.exercise.instructions![0]['content'].toString(),
+                          child: MarkdownBody(
+                            data: value.exercise.instructions.toString(),
+                            styleSheet: MarkdownStyleSheet(
+                              h2: Theme.of(context).textTheme.titleLarge!.copyWith(
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                              strong: const TextStyle(fontWeight: FontWeight.bold),
+                            ),
                           ),
                         ),
                       );
@@ -292,7 +301,7 @@ class OnboardingSessionPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(24.0).copyWith(bottom: 0),
             child: Greeting(
-              iconPath: "assets/images/greeting_icon.svg",
+              iconPath: "assets/icons/greeting.svg",
               message: FlutterI18n.translate(context, "onboarding_session.finished"),
               color: Colors.black,
             ),
@@ -348,7 +357,108 @@ class OnboardingSessionPage extends StatelessWidget {
                               context,
                               "onboarding_session.view_button",
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    final session = Session(
+                                      transcript:
+                                          "I grabbed my coat and sold my car yesterday.",
+                                      id:
+                                          DateTime.now().millisecondsSinceEpoch
+                                              .toString(),
+                                      timestamp: "2025-05-02T16:54:42.080Z",
+                                      exerciseID: "",
+                                      audioURL: "", // This wasn't provided in the JSON
+                                      filler: FillerResult(
+                                        chunks: [
+                                          FillerChunk(text: "It's", timestamp: [0, 0.32]),
+                                          FillerChunk(
+                                            text: "time",
+                                            timestamp: [0.4, 0.55],
+                                          ),
+                                          FillerChunk(
+                                            text: "to",
+                                            timestamp: [0.55, 0.89],
+                                          ),
+                                          FillerChunk(
+                                            text: "dance",
+                                            timestamp: [0.89, 1.03],
+                                          ),
+                                          FillerChunk(
+                                            text: "on",
+                                            timestamp: [1.03, 1.41],
+                                          ),
+                                          FillerChunk(
+                                            text: "stage",
+                                            timestamp: [1.41, 1.63],
+                                          ),
+                                        ],
+                                      ),
+                                      grammar: GrammarResult(
+                                        sentencePairs: [
+                                          SentencePair(
+                                            corrected:
+                                                "I grabbed my coat and sold my car yesterday.",
+                                            distance: 1,
+                                            original:
+                                                " I grabbed my coat and sell my car yesterday.",
+                                          ),
+                                        ],
+                                        stats: GrammarStats(
+                                          averageDistance: 1,
+                                          sentencesCorrected: 1,
+                                          totalSentences: 1,
+                                        ),
+                                      ),
+                                      pitchResult: PitchResult(
+                                        pitchAnalysis: PitchAnalysis(
+                                          fluctuationScore: 0.8220514779596471,
+                                          isMonotone: false,
+                                          pitchRange: 121.26409912109375,
+                                        ),
+                                        pitchFluctuation: [
+                                          PitchEntry(
+                                            pitch: 284.39239501953125,
+                                            timestamp: 0,
+                                          ),
+                                          PitchEntry(
+                                            pitch: 184.39239501953125,
+                                            timestamp: 20,
+                                          ),
+                                          PitchEntry(
+                                            pitch: 284.39239501953125,
+                                            timestamp: 40,
+                                          ),
+                                          PitchEntry(
+                                            pitch: 184.39239501953125,
+                                            timestamp: 60,
+                                          ),
+                                          PitchEntry(
+                                            pitch: 284.39239501953125,
+                                            timestamp: 120,
+                                          ),
+                                        ],
+                                        silentRatio: 0.1759656652360515,
+                                      ),
+                                      formality: FormalityResult(
+                                        formalityScore: 0.142,
+                                        formalPercent: 10,
+                                        informalPercent: 90,
+                                        classification:
+                                            "Your speech is 10% formal and 90% informal.",
+                                      ),
+                                    );
+
+                                    return SessionResultPage(
+                                      session: value.session ?? session,
+                                      audioFilePath: filePath,
+                                    );
+                                  },
+                                ),
+                              );
+                            },
                             icon: Icons.chevron_right_rounded,
                           ),
                         ];

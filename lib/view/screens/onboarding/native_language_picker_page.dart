@@ -5,6 +5,7 @@ import 'package:igris/components/selectable_list_tile.dart';
 import 'package:igris/components/selectable_list_view.dart';
 import 'package:igris/components/topsheet.dart';
 import 'package:igris/components/wide_fab.dart';
+import 'package:speakup_final/app/intl/cubit/intl_cubit_cubit.dart';
 import 'package:speakup_final/app/onboarding/cubit/onboarding_cubit.dart';
 import 'package:speakup_final/repository/onboarding/onboarding_repository.dart';
 import 'package:speakup_final/view/screens/onboarding/english_mastery_picker_page.dart';
@@ -95,14 +96,24 @@ class NativeLanguagePickerPage extends StatelessWidget {
                         language['code'] ==
                         context.read<OnboardingCubit>().selectedLanguageCode;
 
-                    return SelectableListTile(
-                      title: language['englishName'],
-                      trailing: Text(language['nativeName']),
-                      isSelected: isSelected,
-                      variant: SelectableListTileVariant.defaultVariant,
-                      onTap: () {
-                        context.read<OnboardingCubit>().selectLanguage(
-                          language['code'],
+                    return BlocBuilder<IntlCubitCubit, IntlCubitState>(
+                      builder: (context, state) {
+                        return SelectableListTile(
+                          title: language['englishName'],
+                          trailing: Text(language['nativeName']),
+                          isSelected: isSelected,
+                          variant: SelectableListTileVariant.defaultVariant,
+                          onTap: () async {
+                            context.read<OnboardingCubit>().selectLanguage(
+                              language['code'],
+                            );
+
+                            context.read<IntlCubitCubit>().setLocale(
+                              language['code'].toString().substring(0, 2),
+                            );
+
+                            await FlutterI18n.refresh(context, Locale(language['code']));
+                          },
                         );
                       },
                     );

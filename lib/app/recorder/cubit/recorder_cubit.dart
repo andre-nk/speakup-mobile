@@ -37,9 +37,9 @@ class RecorderCubit extends Cubit<RecorderState> {
       _recorderController =
           RecorderController()
             ..androidEncoder = AndroidEncoder.aac
-            ..androidOutputFormat = AndroidOutputFormat.mpeg4
+            ..androidOutputFormat = AndroidOutputFormat.aac_adts
             ..iosEncoder = IosEncoder.kAudioFormatMPEG4AAC
-            ..sampleRate = 44100;
+            ..sampleRate = 20000;
       emit(const RecorderState.initial(isInitialized: true));
     } catch (e) {
       emit(RecorderState.error("Failed to initialize recorder: $e"));

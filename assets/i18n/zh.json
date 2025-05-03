@@ -1,0 +1,96 @@
+{
+  "landing": {
+    "title": "SpeakUp",
+    "tagline": "自信英语之旅从这里开始！",
+    "sso": "使用谷歌继续",
+    "tnc": "继续使用即表示您同意SpeakUp的条款。在隐私政策中了解我们如何处理您的数据"
+  },
+  "native_language_picker": {
+    "greeting": "嗨，Andreas！",
+    "heading": "您的\n母语是什么？",
+    "subheading": "选择您喜欢的语言，获得有趣的学习和个性化的体验！"
+  },
+  "english_mastery_picker": {
+    "greeting": "接下来...",
+    "heading": "您的英语\n水平如何？",
+    "subheading": "选择您当前的英语水平，以个性化您的学习体验。",
+    "beginner": "初学者",
+    "intermediate": "中级",
+    "advanced": "高级",
+    "beginner_subtitle": "您正开始理解英语基础。您正在努力扩充词汇量，形成简单句子，并建立在日常情况下说话的信心",
+    "intermediate_subtitle": "您已经掌握了基础知识！已经熟悉基本词汇和简单短语。您正在建立使用更长更复杂句子说话的信心。",
+    "advanced_subtitle": "您能够在日常情况下自信地说话，掌握基础知识，使用更广泛的词汇和句子结构。在这个水平上，您正在提高流利度并完善语法。"
+  },
+  "goal_picker": {
+    "greeting": "最后一项...",
+    "heading": "您的学习\n目标是什么？",
+    "subheading": "告诉我们您学习英语的原因，以个性化您的体验。",
+    "next": "下一步",
+    "textfield_label": "您的英语学习目标是什么？",
+    "textfield_hint": "在此输入您的目标",
+    "suggested_goals": "建议目标：",
+    "travel": "出国旅行",
+    "business": "商务交流",
+    "friends": "交朋友",
+    "study": "学术研究",
+    "public": "公开演讲",
+    "interview": "工作面试",
+    "conversation": "日常对话",
+    "movie": "无需字幕看电影",
+    "deadline": "设置截止日期（可选）：",
+    "no_deadline": "未设置截止日期",
+    "clear_deadline": "清除截止日期"
+  },
+  "onboarding_session": {
+    "greeting": "现在，让我们试试SpeakUp！",
+    "error_no_exercise": "没有可用的说明",
+    "loading": "加载中...",
+    "next": "下一步",
+    "start": "点击麦克风开始！",
+    "start_description": "开始说话，我们将评估您的英语水平！",
+    "finished": "我们已记录您的讲话！",
+    "result": "您的结果在这里！",
+    "view_button": "查看",
+    "ai_loading": "AI正在分析您的练习..."
+  },
+  "session_result": {
+    "greeting": "您的结果在这里！",
+    "grammar": "语法错误",
+    "filler": "填充词",
+    "common": "常用词",
+    "formality": "正式度评分",
+    "formality_score": "您的正式度评分是",
+    "formality_classification": "分类：",
+    "wpm": "每分钟字数（WPM）",
+    "pitch": "音调变化",
+    "summary": "摘要",
+    "button": "让我们改进它！",
+    "transcription": "转录"
+  },
+  "home": {
+    "quick": "快速练习",
+    "quick_description": "以您正常的速度阅读一段短文，然后在保持清晰度的同时逐渐提高速度。",
+    "vocab": "探索今日词汇！",
+    "jump": "继续上次的进度",
+    "high": "高流利度和自信",
+    "thought": "10.2. 思维分块",
+    "thought_subtitle": "自然地组织想法，使表达流畅清晰。",
+    "content": "书籍和电影",
+    "content_subtitle": "享受我们AI精选的与您当前兴趣相关的书籍或电影推荐：金融！",
+    "feeds": "信息流"
+  },
+  "exercise_list": {
+    "title": "练习",
+    "ai": "AI推荐练习",
+    "ai_description": "以您正常的速度阅读一段短文，然后在保持清晰度的同时逐渐提高速度。",
+    "ai_title": "速度提升",
+    "ai_details": "2分钟 - 高级",
+    "vocab_title": "每日词汇：金融！",
+    "vocab_description": "以您正常的速度阅读一段短文，然后在保持清晰度的同时逐渐提高速度。",
+    "vocab_button": "探索今日词汇！",
+    "practice_heading": "练习列表"
+  },
+  "material_list": {
+    "title": "课程"
+  }
+}

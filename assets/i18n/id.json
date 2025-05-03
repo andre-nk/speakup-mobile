@@ -1,0 +1,96 @@
+{
+  "landing": {
+    "title": "SpeakUp",
+    "tagline": "Perjalanan Menuju Bahasa Inggris yang Percaya Diri Dimulai Di Sini!",
+    "sso": "Lanjutkan dengan Google",
+    "tnc": "Dengan melanjutkan, Anda menyetujui Persyaratan SpeakUp. Pelajari bagaimana kami memproses data Anda dalam kebijakan privasi kami"
+  },
+  "native_language_picker": {
+    "greeting": "hai, Andreas!",
+    "heading": "Apa bahasa\nibu Anda?",
+    "subheading": "Pilih bahasa pilihan Anda untuk pembelajaran yang menyenangkan dan pengalaman yang dipersonalisasi!"
+  },
+  "english_mastery_picker": {
+    "greeting": "selanjutnya...",
+    "heading": "Apa tingkat\nBahasa Inggris Anda?",
+    "subheading": "Pilih tingkat Bahasa Inggris Anda saat ini untuk mempersonalisasi pengalaman belajar Anda.",
+    "beginner": "Pemula",
+    "intermediate": "Menengah",
+    "advanced": "Mahir",
+    "beginner_subtitle": "Anda baru mulai memahami dasar-dasar Bahasa Inggris. Anda sedang bekerja pada membangun kosakata Anda, membentuk kalimat sederhana, dan mendapatkan kepercayaan diri untuk berbicara dalam situasi sehari-hari",
+    "intermediate_subtitle": "Anda telah menguasai dasar-dasarnya! Sudah familiar dengan kosakata penting dan frasa sederhana. Anda sedang membangun kepercayaan diri untuk berbicara dalam kalimat yang lebih panjang dan kompleks.",
+    "advanced_subtitle": "Anda mampu berbicara dengan percaya diri dalam situasi sehari-hari, menguasai dasar-dasar, menggunakan berbagai kosakata dan struktur kalimat yang lebih luas. Pada tingkat ini, Anda sedang menyempurnakan kelancaran dan menyempurnakan tata bahasa Anda."
+  },
+  "goal_picker": {
+    "greeting": "terakhir...",
+    "heading": "Apa tujuan\nbelajar Anda?",
+    "subheading": "Beri tahu kami mengapa Anda belajar Bahasa Inggris untuk mempersonalisasi pengalaman Anda.",
+    "next": "Selanjutnya",
+    "textfield_label": "Apa tujuan belajar Bahasa Inggris Anda?",
+    "textfield_hint": "Masukkan tujuan Anda di sini",
+    "suggested_goals": "Tujuan yang disarankan:",
+    "travel": "Bepergian ke luar negeri",
+    "business": "Komunikasi bisnis",
+    "friends": "Berteman",
+    "study": "Studi akademis",
+    "public": "Berbicara di depan umum",
+    "interview": "Wawancara kerja",
+    "conversation": "Percakapan santai",
+    "movie": "Menonton film tanpa subtitle",
+    "deadline": "Tetapkan tenggat waktu (opsional):",
+    "no_deadline": "Tidak ada tenggat waktu",
+    "clear_deadline": "Hapus tenggat waktu"
+  },
+  "onboarding_session": {
+    "greeting": "sekarang, mari coba SpeakUp!",
+    "error_no_exercise": "Tidak ada instruksi tersedia",
+    "loading": "Memuat...",
+    "next": "Selanjutnya",
+    "start": "Ketuk mikrofon untuk mulai!",
+    "start_description": "Mulailah berbicara dan kami akan mengevaluasi Kemampuan Bahasa Inggris Anda!",
+    "finished": "kami telah merekam ucapan Anda!",
+    "result": "Hasil Anda sudah ada!",
+    "view_button": "Lihat",
+    "ai_loading": "AI sedang menganalisis latihan Anda..."
+  },
+  "session_result": {
+    "greeting": "Hasil Anda sudah ada!",
+    "grammar": "Kesalahan Tata Bahasa",
+    "filler": "Kata Pengisi",
+    "common": "Kata-kata Umum",
+    "formality": "Skor Formalitas",
+    "formality_score": "Skor formalitas Anda adalah",
+    "formality_classification": "Klasifikasi: ",
+    "wpm": "Kata per Menit (KPM)",
+    "pitch": "Fluktuasi Nada",
+    "summary": "Ringkasan",
+    "button": "Mari tingkatkan itu!",
+    "transcription": "Transkripsi"
+  },
+  "home": {
+    "quick": "latihan cepat",
+    "quick_description": "Baca sebuah pasase pendek dengan kecepatan normal Anda, kemudian secara bertahap tingkatkan kecepatan sambil mempertahankan kejelasan.",
+    "vocab": "Jelajahi kosakata hari ini!",
+    "jump": "Lanjutkan dari sesi terakhir",
+    "high": "Kelancaran dan Kepercayaan Diri Tinggi",
+    "thought": "10.2. Pengelompokan Pemikiran",
+    "thought_subtitle": "Kelompokkan ide secara alami untuk berbicara dengan lancar dan jelas.",
+    "content": "Buku dan Film",
+    "content_subtitle": "Nikmati rekomendasi buku atau film yang dikurasi AI terkait dengan minat Anda saat ini: keuangan!",
+    "feeds": "Konten"
+  },
+  "exercise_list": {
+    "title": "Latihan",
+    "ai": "Latihan yang Disarankan AI",
+    "ai_description": "Baca sebuah pasase pendek dengan kecepatan normal Anda, kemudian secara bertahap tingkatkan kecepatan sambil mempertahankan kejelasan.",
+    "ai_title": "Peningkatan Kecepatan",
+    "ai_details": "2 menit - Mahir",
+    "vocab_title": "Kosakata Harian: Keuangan!",
+    "vocab_description": "Baca sebuah pasase pendek dengan kecepatan normal Anda, kemudian secara bertahap tingkatkan kecepatan sambil mempertahankan kejelasan.",
+    "vocab_button": "Jelajahi kosakata hari ini!",
+    "practice_heading": "Daftar Latihan"
+  },
+  "material_list": {
+    "title": "Kurikulum"
+  }
+}

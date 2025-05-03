@@ -40,6 +40,7 @@ class AiCubit extends Cubit<AiState> {
         audioFilePath: audioFilePath,
         userID: userID,
         sessionID: sessionID,
+        exerciseID: exerciseID,
       );
 
       // Step 2: Change to processing state

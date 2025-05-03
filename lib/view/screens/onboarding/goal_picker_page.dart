@@ -5,7 +5,7 @@ import 'package:igris/components/topsheet.dart';
 import 'package:igris/components/wide_fab.dart';
 import 'package:speakup_final/app/onboarding/cubit/onboarding_cubit.dart';
 import 'package:speakup_final/repository/onboarding/onboarding_repository.dart';
-import 'package:speakup_final/view/screens/wrapper/wrapper_page.dart';
+import 'package:speakup_final/view/screens/onboarding_session/onboarding_session_page.dart';
 import 'package:intl/intl.dart';
 
 class GoalPickerPage extends StatefulWidget {
@@ -61,7 +61,7 @@ class _GoalPickerPageState extends State<GoalPickerPage> {
 
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => const WrapperPage()),
+                MaterialPageRoute(builder: (context) => const OnboardingSessionPage()),
               );
             },
           );
@@ -153,10 +153,7 @@ class _GoalPickerPageState extends State<GoalPickerPage> {
 
                         // Suggestion chips
                         Text(
-                          FlutterI18n.translate(
-                            context,
-                            "goal_picker.suggestion_goals",
-                          ),
+                          FlutterI18n.translate(context, "goal_picker.suggestion_goals"),
                           style: Theme.of(context).textTheme.titleMedium,
                         ),
 
@@ -169,73 +166,49 @@ class _GoalPickerPageState extends State<GoalPickerPage> {
                           children: [
                             _buildGoalChip(
                               context,
-                              FlutterI18n.translate(
-                                context,
-                                "goal_picker.travel",
-                              ),
+                              FlutterI18n.translate(context, "goal_picker.travel"),
                               goalController,
                               cubit,
                             ),
                             _buildGoalChip(
                               context,
-                              FlutterI18n.translate(
-                                context,
-                                "goal_picker.business",
-                              ),
+                              FlutterI18n.translate(context, "goal_picker.business"),
                               goalController,
                               cubit,
                             ),
                             _buildGoalChip(
                               context,
-                              FlutterI18n.translate(
-                                context,
-                                "goal_picker.friends",
-                              ),
+                              FlutterI18n.translate(context, "goal_picker.friends"),
                               goalController,
                               cubit,
                             ),
                             _buildGoalChip(
                               context,
-                              FlutterI18n.translate(
-                                context,
-                                "goal_picker.study",
-                              ),
+                              FlutterI18n.translate(context, "goal_picker.study"),
                               goalController,
                               cubit,
                             ),
                             _buildGoalChip(
                               context,
-                              FlutterI18n.translate(
-                                context,
-                                "goal_picker.public",
-                              ),
+                              FlutterI18n.translate(context, "goal_picker.public"),
                               goalController,
                               cubit,
                             ),
                             _buildGoalChip(
                               context,
-                              FlutterI18n.translate(
-                                context,
-                                "goal_picker.interview",
-                              ),
+                              FlutterI18n.translate(context, "goal_picker.interview"),
                               goalController,
                               cubit,
                             ),
                             _buildGoalChip(
                               context,
-                              FlutterI18n.translate(
-                                context,
-                                "goal_picker.conversation",
-                              ),
+                              FlutterI18n.translate(context, "goal_picker.conversation"),
                               goalController,
                               cubit,
                             ),
                             _buildGoalChip(
                               context,
-                              FlutterI18n.translate(
-                                context,
-                                "goal_picker.movie",
-                              ),
+                              FlutterI18n.translate(context, "goal_picker.movie"),
                               goalController,
                               cubit,
                             ),
@@ -246,10 +219,7 @@ class _GoalPickerPageState extends State<GoalPickerPage> {
 
                         // Deadline picker
                         Text(
-                          FlutterI18n.translate(
-                            context,
-                            "goal_picker.deadline",
-                          ),
+                          FlutterI18n.translate(context, "goal_picker.deadline"),
                           style: Theme.of(context).textTheme.titleMedium,
                         ),
 

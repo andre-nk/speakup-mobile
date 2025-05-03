@@ -6,7 +6,8 @@ import 'package:path/path.dart' as path;
 import 'package:http_parser/http_parser.dart'; // Add this import
 
 class SessionRepository {
-  final String _apiBaseUrl = 'https://speakup-backend-latest-615384299938.asia-southeast1.run.app';
+  final String _apiBaseUrl =
+      'https://speakup-backend-689756285639.asia-southeast1.run.app/api';
 
   final FirebaseFirestore _firestore;
 
@@ -42,6 +43,7 @@ class SessionRepository {
     required String audioFilePath,
     required String userID,
     required String sessionID,
+    required String exerciseID,
   }) async {
     // Create file object from path
     final file = File(audioFilePath);
@@ -52,9 +54,14 @@ class SessionRepository {
     // Create multipart request
     final request = http.MultipartRequest('POST', Uri.parse('$_apiBaseUrl/upload-audio'));
 
+    // Set headers
+    request.headers['Content-Type'] = 'application/json';
+    request.headers['Accept'] = 'application/json';
+
     // Add required fields
     request.fields['userID'] = userID;
     request.fields['sessionID'] = sessionID;
+    request.fields['exerciseID'] = exerciseID;
 
     // Add the audio file with proper content type
     final fileStream = http.ByteStream(file.openRead());
