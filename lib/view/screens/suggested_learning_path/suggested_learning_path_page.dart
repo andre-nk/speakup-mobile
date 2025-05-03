@@ -5,17 +5,28 @@ import 'package:igris/components/headline.dart';
 import 'package:igris/components/tile.dart';
 import 'package:igris/components/topsheet.dart';
 import 'package:speakup_final/app/curriculum/cubit/curriculum_cubit.dart';
+import 'package:speakup_final/app/curriculum_customizer/cubit/curriculum_customizer_cubit.dart';
+import 'package:speakup_final/model/session_summary/session_summary.dart';
 import 'package:speakup_final/view/screens/material/detailed_material_page.dart';
 import 'package:speakup_final/view/screens/wrapper/wrapper_page.dart';
 import 'package:speakup_final/view/widgets/custom_collapsible.dart';
 
 class SuggestedLearningPathPage extends StatelessWidget {
-  const SuggestedLearningPathPage({super.key});
+  final SpeechAnalysisFeedback speechAnalysisFeedback;
+  const SuggestedLearningPathPage({super.key, required this.speechAnalysisFeedback});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => CurriculumCubit()..fetchMaterialCurriculum(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => CurriculumCubit()..fetchMaterialCurriculum()),
+        BlocProvider(
+          create:
+              (context) =>
+                  CurriculumCustomizerCubit()
+                    ..customizeMaterial(speechAnalysisFeedback: speechAnalysisFeedback),
+        ),
+      ],
       child: Scaffold(
         backgroundColor: Colors.white,
         body: SafeArea(
@@ -36,97 +47,118 @@ class SuggestedLearningPathPage extends StatelessWidget {
                   child: Column(
                     children: [
                       const Headline(title: "Curriculum"),
-                      BlocBuilder<CurriculumCubit, CurriculumState>(
+                      BlocBuilder<CurriculumCustomizerCubit, CurriculumCustomizerState>(
                         builder: (context, state) {
                           return state.maybeWhen(
-                            initial: () => const Center(child: Text("Loading...")),
                             loading:
-                                () => const Center(
-                                  child: Padding(
-                                    padding: EdgeInsets.symmetric(vertical: 64.0),
-                                    child: CircularProgressIndicator(),
-                                  ),
-                                ),
-                            materialLoaded: (materialCurriculumData) {
-                              final widgets = <Widget>[];
-                              var globalSectionCounter = 1;
-
-                              for (final level in materialCurriculumData.levels) {
-                                if (level.sectionObjects == null ||
-                                    level.sectionObjects!.isEmpty) {
-                                  continue;
-                                }
-
-                                for (var i = 0; i < level.sectionObjects!.length; i++) {
-                                  final section = level.sectionObjects![i];
-                                  final sectionIndex =
-                                      globalSectionCounter; // Use global counter instead of i + 1
-
-                                  if (section.materialObjects == null ||
-                                      section.materialObjects!.isEmpty) {
-                                    continue;
-                                  }
-
-                                  final materialTiles = <Widget>[];
-
-                                  for (
-                                    var j = 0;
-                                    j < section.materialObjects!.length;
-                                    j++
-                                  ) {
-                                    final material = section.materialObjects![j];
-                                    materialTiles.add(
-                                      Padding(
-                                        padding: const EdgeInsets.only(bottom: 12.0),
-                                        child: Tile(
-                                          title:
-                                              "$sectionIndex.${j + 1}.  ${material.title}",
-                                          onTap: () {
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) {
-                                                  return DetailedMaterialPage(
-                                                    material: material,
-                                                  );
-                                                },
-                                              ),
-                                            );
-                                          },
-                                          subtitle: material.subtitle ?? "",
-                                        ),
-                                      ),
-                                    );
-                                  }
-
-                                  widgets.add(
-                                    CustomCollapsible(
-                                      sectionNumber: "$sectionIndex",
-                                      title: "test",
-                                      subtitle: section.title ?? "",
-                                      children: materialTiles,
-                                    ),
-                                  );
-
-                                  widgets.add(const Divider(thickness: 2.0));
-                                  globalSectionCounter++;
-                                }
-                              }
-
-                              return widgets.isEmpty
-                                  ? const Center(
-                                    child: Text("No curriculum data available"),
-                                  )
-                                  : Column(children: widgets);
-                            },
+                                () => const Center(child: CircularProgressIndicator()),
                             error:
                                 (message) => Center(
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(vertical: 64.0),
-                                    child: Text("Error loading curriculum: $message"),
+                                  child: Text(
+                                    message,
+                                    style: Theme.of(context).textTheme.bodyLarge,
                                   ),
                                 ),
-                            orElse: () => const Center(child: Text("Unknown state")),
+                            loaded: (feedback) {
+                              return BlocBuilder<CurriculumCubit, CurriculumState>(
+                                builder: (context, state) {
+                                  return state.maybeWhen(
+                                    initial:
+                                        () => const Center(child: Text("Loading...")),
+                                    loading:
+                                        () => const Center(
+                                          child: Padding(
+                                            padding: EdgeInsets.symmetric(vertical: 64.0),
+                                            child: CircularProgressIndicator(),
+                                          ),
+                                        ),
+                                    materialLoaded: (materialCurriculumData) {
+                                      final widgets = <Widget>[];
+                                      for (final level in materialCurriculumData.levels) {
+                                        if (level.sectionObjects == null ||
+                                            level.sectionObjects!.isEmpty) {
+                                          continue;
+                                        }
+
+                                        for (
+                                          var i = 0;
+                                          i < level.sectionObjects!.length;
+                                          i++
+                                        ) {
+                                          final section = level.sectionObjects![i];
+
+                                          if (section.materialObjects == null ||
+                                              section.materialObjects!.isEmpty) {
+                                            continue;
+                                          }
+
+                                          final materialTiles = <Widget>[];
+
+                                          for (
+                                            var j = 0;
+                                            j < section.materialObjects!.length;
+                                            j++
+                                          ) {
+                                            final material = section.materialObjects![j];
+                                            materialTiles.add(
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                  bottom: 12.0,
+                                                ),
+                                                child: Tile(
+                                                  title: "${j + 1}.  ${material.title}",
+                                                  onTap: () {
+                                                    Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) {
+                                                          return DetailedMaterialPage(
+                                                            material: material,
+                                                          );
+                                                        },
+                                                      ),
+                                                    );
+                                                  },
+                                                  subtitle: material.subtitle ?? "",
+                                                ),
+                                              ),
+                                            );
+                                          }
+
+                                          widgets.add(
+                                            CustomCollapsible(
+                                              sectionNumber: "",
+                                              title: section.title ?? "",
+                                              children: materialTiles,
+                                            ),
+                                          );
+
+                                          widgets.add(const Divider(thickness: 2.0));
+                                        }
+                                      }
+
+                                      return widgets.isEmpty
+                                          ? const Center(
+                                            child: Text("No curriculum data available"),
+                                          )
+                                          : Column(children: widgets);
+                                    },
+                                    error:
+                                        (message) => Center(
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              vertical: 64.0,
+                                            ),
+                                            child: Text("Error loading curriculum: "),
+                                          ),
+                                        ),
+                                    orElse:
+                                        () => const Center(child: Text("Unknown state")),
+                                  );
+                                },
+                              );
+                            },
+                            orElse: () => const SizedBox.shrink(),
                           );
                         },
                       ),
@@ -135,15 +167,7 @@ class SuggestedLearningPathPage extends StatelessWidget {
                         width: double.infinity,
                         child: Button(
                           text: "View the detailed curriculum",
-                          onPressed: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  return const SuggestedLearningPathPage();
-                                },
-                              ),
-                            );
-                          },
+                          onPressed: () {},
                         ),
                       ),
                       const SizedBox(height: 16),

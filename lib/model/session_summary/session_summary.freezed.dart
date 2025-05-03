@@ -15,205 +15,6 @@ final _privateConstructorUsedError = UnsupportedError(
   'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
 );
 
-Struggles _$StrugglesFromJson(Map<String, dynamic> json) {
-  return _Struggles.fromJson(json);
-}
-
-/// @nodoc
-mixin _$Struggles {
-  String get issue1 => throw _privateConstructorUsedError;
-  String get issue2 => throw _privateConstructorUsedError;
-  String get issue3 => throw _privateConstructorUsedError;
-
-  /// Serializes this Struggles to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of Struggles
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $StrugglesCopyWith<Struggles> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $StrugglesCopyWith<$Res> {
-  factory $StrugglesCopyWith(Struggles value, $Res Function(Struggles) then) =
-      _$StrugglesCopyWithImpl<$Res, Struggles>;
-  @useResult
-  $Res call({String issue1, String issue2, String issue3});
-}
-
-/// @nodoc
-class _$StrugglesCopyWithImpl<$Res, $Val extends Struggles>
-    implements $StrugglesCopyWith<$Res> {
-  _$StrugglesCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of Struggles
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? issue1 = null,
-    Object? issue2 = null,
-    Object? issue3 = null,
-  }) {
-    return _then(
-      _value.copyWith(
-            issue1:
-                null == issue1
-                    ? _value.issue1
-                    : issue1 // ignore: cast_nullable_to_non_nullable
-                        as String,
-            issue2:
-                null == issue2
-                    ? _value.issue2
-                    : issue2 // ignore: cast_nullable_to_non_nullable
-                        as String,
-            issue3:
-                null == issue3
-                    ? _value.issue3
-                    : issue3 // ignore: cast_nullable_to_non_nullable
-                        as String,
-          )
-          as $Val,
-    );
-  }
-}
-
-/// @nodoc
-abstract class _$$StrugglesImplCopyWith<$Res>
-    implements $StrugglesCopyWith<$Res> {
-  factory _$$StrugglesImplCopyWith(
-    _$StrugglesImpl value,
-    $Res Function(_$StrugglesImpl) then,
-  ) = __$$StrugglesImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String issue1, String issue2, String issue3});
-}
-
-/// @nodoc
-class __$$StrugglesImplCopyWithImpl<$Res>
-    extends _$StrugglesCopyWithImpl<$Res, _$StrugglesImpl>
-    implements _$$StrugglesImplCopyWith<$Res> {
-  __$$StrugglesImplCopyWithImpl(
-    _$StrugglesImpl _value,
-    $Res Function(_$StrugglesImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of Struggles
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? issue1 = null,
-    Object? issue2 = null,
-    Object? issue3 = null,
-  }) {
-    return _then(
-      _$StrugglesImpl(
-        issue1:
-            null == issue1
-                ? _value.issue1
-                : issue1 // ignore: cast_nullable_to_non_nullable
-                    as String,
-        issue2:
-            null == issue2
-                ? _value.issue2
-                : issue2 // ignore: cast_nullable_to_non_nullable
-                    as String,
-        issue3:
-            null == issue3
-                ? _value.issue3
-                : issue3 // ignore: cast_nullable_to_non_nullable
-                    as String,
-      ),
-    );
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$StrugglesImpl implements _Struggles {
-  const _$StrugglesImpl({
-    required this.issue1,
-    required this.issue2,
-    required this.issue3,
-  });
-
-  factory _$StrugglesImpl.fromJson(Map<String, dynamic> json) =>
-      _$$StrugglesImplFromJson(json);
-
-  @override
-  final String issue1;
-  @override
-  final String issue2;
-  @override
-  final String issue3;
-
-  @override
-  String toString() {
-    return 'Struggles(issue1: $issue1, issue2: $issue2, issue3: $issue3)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$StrugglesImpl &&
-            (identical(other.issue1, issue1) || other.issue1 == issue1) &&
-            (identical(other.issue2, issue2) || other.issue2 == issue2) &&
-            (identical(other.issue3, issue3) || other.issue3 == issue3));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, issue1, issue2, issue3);
-
-  /// Create a copy of Struggles
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$StrugglesImplCopyWith<_$StrugglesImpl> get copyWith =>
-      __$$StrugglesImplCopyWithImpl<_$StrugglesImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$StrugglesImplToJson(this);
-  }
-}
-
-abstract class _Struggles implements Struggles {
-  const factory _Struggles({
-    required final String issue1,
-    required final String issue2,
-    required final String issue3,
-  }) = _$StrugglesImpl;
-
-  factory _Struggles.fromJson(Map<String, dynamic> json) =
-      _$StrugglesImpl.fromJson;
-
-  @override
-  String get issue1;
-  @override
-  String get issue2;
-  @override
-  String get issue3;
-
-  /// Create a copy of Struggles
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$StrugglesImplCopyWith<_$StrugglesImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
 SpeechFeedback _$SpeechFeedbackFromJson(Map<String, dynamic> json) {
   return _SpeechFeedback.fromJson(json);
 }
@@ -221,6 +22,7 @@ SpeechFeedback _$SpeechFeedbackFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$SpeechFeedback {
   String get part1 => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: _strugglesFromJson, toJson: _strugglesToJson)
   Struggles get part2 => throw _privateConstructorUsedError;
 
   /// Serializes this SpeechFeedback to a JSON map.
@@ -240,9 +42,11 @@ abstract class $SpeechFeedbackCopyWith<$Res> {
     $Res Function(SpeechFeedback) then,
   ) = _$SpeechFeedbackCopyWithImpl<$Res, SpeechFeedback>;
   @useResult
-  $Res call({String part1, Struggles part2});
-
-  $StrugglesCopyWith<$Res> get part2;
+  $Res call({
+    String part1,
+    @JsonKey(fromJson: _strugglesFromJson, toJson: _strugglesToJson)
+    Struggles part2,
+  });
 }
 
 /// @nodoc
@@ -276,16 +80,6 @@ class _$SpeechFeedbackCopyWithImpl<$Res, $Val extends SpeechFeedback>
           as $Val,
     );
   }
-
-  /// Create a copy of SpeechFeedback
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $StrugglesCopyWith<$Res> get part2 {
-    return $StrugglesCopyWith<$Res>(_value.part2, (value) {
-      return _then(_value.copyWith(part2: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -297,10 +91,11 @@ abstract class _$$SpeechFeedbackImplCopyWith<$Res>
   ) = __$$SpeechFeedbackImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String part1, Struggles part2});
-
-  @override
-  $StrugglesCopyWith<$Res> get part2;
+  $Res call({
+    String part1,
+    @JsonKey(fromJson: _strugglesFromJson, toJson: _strugglesToJson)
+    Struggles part2,
+  });
 }
 
 /// @nodoc
@@ -337,7 +132,11 @@ class __$$SpeechFeedbackImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SpeechFeedbackImpl implements _SpeechFeedback {
-  const _$SpeechFeedbackImpl({required this.part1, required this.part2});
+  const _$SpeechFeedbackImpl({
+    required this.part1,
+    @JsonKey(fromJson: _strugglesFromJson, toJson: _strugglesToJson)
+    required this.part2,
+  });
 
   factory _$SpeechFeedbackImpl.fromJson(Map<String, dynamic> json) =>
       _$$SpeechFeedbackImplFromJson(json);
@@ -345,6 +144,7 @@ class _$SpeechFeedbackImpl implements _SpeechFeedback {
   @override
   final String part1;
   @override
+  @JsonKey(fromJson: _strugglesFromJson, toJson: _strugglesToJson)
   final Struggles part2;
 
   @override
@@ -385,6 +185,7 @@ class _$SpeechFeedbackImpl implements _SpeechFeedback {
 abstract class _SpeechFeedback implements SpeechFeedback {
   const factory _SpeechFeedback({
     required final String part1,
+    @JsonKey(fromJson: _strugglesFromJson, toJson: _strugglesToJson)
     required final Struggles part2,
   }) = _$SpeechFeedbackImpl;
 
@@ -394,6 +195,7 @@ abstract class _SpeechFeedback implements SpeechFeedback {
   @override
   String get part1;
   @override
+  @JsonKey(fromJson: _strugglesFromJson, toJson: _strugglesToJson)
   Struggles get part2;
 
   /// Create a copy of SpeechFeedback

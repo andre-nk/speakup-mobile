@@ -5,6 +5,7 @@ import 'package:igris/components/collapsible.dart';
 import 'package:igris/components/greeting.dart';
 import 'package:igris/components/tile.dart';
 import 'package:speakup_final/app/curriculum/cubit/curriculum_cubit.dart';
+import 'package:speakup_final/view/screens/material/detailed_material_page.dart';
 
 class MaterialListPage extends StatelessWidget {
   const MaterialListPage({super.key});
@@ -69,7 +70,18 @@ class MaterialListPage extends StatelessWidget {
                                     padding: const EdgeInsets.only(bottom: 12.0),
                                     child: Tile(
                                       title: "$sectionIndex.${j + 1}.  ${material.title}",
-                                      onTap: () {},
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) {
+                                              return DetailedMaterialPage(
+                                                material: material,
+                                              );
+                                            },
+                                          ),
+                                        );
+                                      },
                                       subtitle: material.subtitle ?? "",
                                       icon: Icons.circle_outlined,
                                     ),

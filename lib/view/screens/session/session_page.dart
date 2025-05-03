@@ -10,6 +10,7 @@ import 'package:igris/components/outlined_card.dart';
 import 'package:igris/components/button.dart';
 import 'package:speakup_final/app/ai/cubit/ai_cubit.dart';
 import 'package:speakup_final/app/auth/cubit/auth_cubit.dart';
+import 'package:speakup_final/app/exercise/cubit/exercise_cubit.dart';
 import 'package:speakup_final/app/exercise_customizer/cubit/exercise_customizer_cubit.dart';
 import 'package:speakup_final/app/recorder/cubit/recorder_cubit.dart';
 import 'package:speakup_final/app/player/cubit/player_cubit.dart';
@@ -31,6 +32,7 @@ class SessionPage extends StatelessWidget {
           BlocProvider(create: (context) => PlayerCubit()),
           BlocProvider(create: (context) => AiCubit()),
           BlocProvider(create: (context) => StreakCubit()),
+          BlocProvider(create: (context) => ExerciseCubit()),
           BlocProvider(
             create: (context) {
               return ExerciseCustomizerCubit()..customizeExercise(
@@ -306,6 +308,14 @@ class SessionPage extends StatelessWidget {
                       authenticated: (user) => user.uid,
                       orElse: () => "",
                     ),
+                  );
+
+                  context.read<ExerciseCubit>().addCompletedExercise(
+                    context.read<AuthCubit>().state.whenOrNull(
+                          authenticated: (user) => user.uid,
+                        ) ??
+                        "",
+                    exercise.id!,
                   );
                 },
                 orElse: () {},

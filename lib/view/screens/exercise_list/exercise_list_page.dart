@@ -11,6 +11,7 @@ import 'package:igris/components/headline.dart';
 import 'package:igris/components/tile.dart';
 import 'package:speakup_final/app/curriculum/cubit/curriculum_cubit.dart';
 import 'package:speakup_final/view/screens/session/session_page.dart';
+import 'package:speakup_final/view/screens/session_history/session_history_page.dart';
 
 class ExerciseListPage extends StatelessWidget {
   const ExerciseListPage({super.key});
@@ -46,7 +47,15 @@ class ExerciseListPage extends StatelessWidget {
                           icon: const Icon(Icons.history),
                           color: Theme.of(context).primaryColor,
                           iconSize: 28.0,
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return const SessionHistoryPage();
+                                },
+                              ),
+                            );
+                          },
                         ),
                       ],
                     ),

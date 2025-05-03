@@ -6,8 +6,7 @@ import 'package:path/path.dart' as path;
 import 'package:http_parser/http_parser.dart'; // Add this import
 
 class SessionRepository {
-  final String _apiBaseUrl =
-      'https://speakup-node-689756285639.asia-southeast1.run.app/api';
+  final String _apiBaseUrl = 'https://speakup-backend-latest-615384299938.asia-southeast1.run.app';
 
   final FirebaseFirestore _firestore;
 

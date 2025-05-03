@@ -12,19 +12,23 @@ import 'package:igris/components/mini_fab.dart';
 import 'package:speakup_final/app/player/cubit/player_cubit.dart';
 import 'package:speakup_final/app/summary/cubit/summary_cubit.dart';
 import 'package:speakup_final/model/session/session.dart';
+import 'package:speakup_final/model/session_summary/session_summary.dart';
 import 'package:speakup_final/repository/summary/summary_repository.dart';
 import 'package:speakup_final/utils/format_duration.dart';
+import 'package:speakup_final/view/screens/suggested_learning_path/suggested_learning_path_page.dart';
 
 class SessionResultPage extends StatelessWidget {
   final Session session;
   final String audioFilePath;
   final String? audioNetworkPath;
+  final bool? isHistory;
 
   const SessionResultPage({
     super.key,
     required this.session,
     required this.audioFilePath,
     this.audioNetworkPath,
+    this.isHistory,
   });
 
   @override
@@ -311,7 +315,7 @@ class SessionResultPage extends StatelessWidget {
                               ),
                               const SizedBox(height: 8),
                               Text(
-                                "${FlutterI18n.translate(context, "session-result.formality_classification")} ${session.formality.classification}",
+                                "${FlutterI18n.translate(context, "session_result.formality_classification")} ${session.formality.classification}",
                                 style: Theme.of(context).textTheme.bodySmall,
                               ),
                             ],
@@ -540,23 +544,23 @@ class SessionResultPage extends StatelessWidget {
               Bottomsheet(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 24.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        FlutterI18n.translate(context, "session_result.summary"),
-                        style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                          fontWeight: FontWeight.w600,
-                          color: Theme.of(context).colorScheme.primary,
+                  child: BlocProvider(
+                    create:
+                        (context) =>
+                            SummaryCubit(summaryRepository: SummaryRepository())
+                              ..generateSessionFeedback(session),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          FlutterI18n.translate(context, "session_result.summary"),
+                          style: Theme.of(context).textTheme.displaySmall!.copyWith(
+                            fontWeight: FontWeight.w600,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 16),
-                      BlocProvider(
-                        create:
-                            (context) =>
-                                SummaryCubit(summaryRepository: SummaryRepository())
-                                  ..generateSessionFeedback(session),
-                        child: BlocBuilder<SummaryCubit, SummaryState>(
+                        const SizedBox(height: 16),
+                        BlocBuilder<SummaryCubit, SummaryState>(
                           builder: (context, state) {
                             return state.when(
                               initial: () => const SizedBox(),
@@ -582,16 +586,61 @@ class SessionResultPage extends StatelessWidget {
                             );
                           },
                         ),
-                      ),
-                      const SizedBox(height: 48),
-                      SizedBox(
-                        width: double.infinity,
-                        child: Button(
-                          text: FlutterI18n.translate(context, "session_resut.button"),
-                          onPressed: () {},
-                        ),
-                      ),
-                    ],
+                        const SizedBox(height: 48),
+                        isHistory != null && isHistory!
+                            ? BlocBuilder<SummaryCubit, SummaryState>(
+                              builder: (context, state) {
+                                return SizedBox(
+                                  width: double.infinity,
+                                  child: Button(
+                                    text: FlutterI18n.translate(
+                                      context,
+                                      "session_result.button",
+                                    ),
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) {
+                                            return SuggestedLearningPathPage(
+                                              speechAnalysisFeedback:
+                                                  SpeechAnalysisFeedback(
+                                                    wordsPerMinute:
+                                                        session
+                                                            .calculateOverallWPM()
+                                                            .toInt(),
+                                                    isMonotone:
+                                                        session
+                                                                .pitchResult
+                                                                .pitchAnalysis
+                                                                .isMonotone
+                                                            ? true
+                                                            : false,
+                                                    silentRatio:
+                                                        session.pitchResult.silentRatio,
+                                                    mostCommonWords:
+                                                        session.mostCommonWords,
+                                                    fillerWords:
+                                                        session.filler.chunks.length,
+                                                    formalityScore:
+                                                        session.formality.formalityScore
+                                                            .toInt(),
+                                                    grammarMistakes:
+                                                        session.grammarMistakes,
+                                                    transcript: session.transcript,
+                                                  ),
+                                            );
+                                          },
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                );
+                              },
+                            )
+                            : const SizedBox(),
+                      ],
+                    ),
                   ),
                 ),
               ),
